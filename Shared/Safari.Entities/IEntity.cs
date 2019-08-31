@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NTier.Entities
+namespace Safari.Entities
 {
     public interface IEntity
     {

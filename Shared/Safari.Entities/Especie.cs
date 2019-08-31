@@ -7,7 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 
 
-namespace NTier.Entities
+namespace Safari.Entities
 {
 
     public partial class Especie : IEntity

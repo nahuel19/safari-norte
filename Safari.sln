@@ -4,16 +4,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{907CBC28-C980-4F1C-953B-2BCF4972327A}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\N-Tier\N-Tier\Data\NTier.Data\DataAccessComponent.cs = ..\..\..\N-Tier\N-Tier\Data\NTier.Data\DataAccessComponent.cs
-		G:\!!  _MCGA-2019\01\EspecieDAC.cs = G:\!!  _MCGA-2019\01\EspecieDAC.cs
-		..\..\..\N-Tier\N-Tier\Data\NTier.Data\IRepository.cs = ..\..\..\N-Tier\N-Tier\Data\NTier.Data\IRepository.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{CC26E490-272E-40E7-AC1A-11FBFE9E7FCB}"
-	ProjectSection(SolutionItems) = preProject
-		G:\!!  _MCGA-2019\01\EspecieComponent.cs = G:\!!  _MCGA-2019\01\EspecieComponent.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{EF221EB0-4B55-4411-8A59-C08AAE745DF4}"
 EndProject
