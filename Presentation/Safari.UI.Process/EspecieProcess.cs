@@ -1,5 +1,4 @@
 using Safari.Entities;
-using Safari.Entities;
 using Safari.Services;
 using Safari.Services.Contracts;
 using System;

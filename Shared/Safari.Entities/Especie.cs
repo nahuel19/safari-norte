@@ -27,5 +27,7 @@ namespace Safari.Entities
                 .Where(p => !p.PropertyType.IsGenericType && !p.PropertyType.IsArray)
                 .Select(p => string.Format("{0}={1}", p.Name, p.GetValue(this, null))));
         }
+
+        public virtual ICollection<Paciente> Pacientes { get; set; }
     }
 }
