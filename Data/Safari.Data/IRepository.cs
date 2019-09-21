@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NTier.Data
+namespace Safari.Data
 {
     public interface IRepository<TEntity> where TEntity : IEntity
     {
