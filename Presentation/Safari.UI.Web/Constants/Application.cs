@@ -7,7 +7,7 @@ namespace Safari.UI.Web.Constants
 {
     public class Application
     {
-        public const string Name = "ASP.NET MVC Vitruvio";
-        public const string ShortName = "Vitruvio";
+        public const string Name = "Safari World";
+        public const string ShortName = "Safari W";
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Safari.UI.Web.Controllers
+namespace Safari.UI.Web.Areas.Admin.Controllers
 {
     public class EspecieController : Controller
     {

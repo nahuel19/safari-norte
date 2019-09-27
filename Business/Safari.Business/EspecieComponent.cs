@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Safari.Entities;
 using Safari.Data;
-using NTier.Data;
 
 namespace Safari.Business
 {
