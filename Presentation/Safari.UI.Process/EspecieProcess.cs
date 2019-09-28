@@ -8,7 +8,7 @@ using System.ServiceModel;
 
 namespace Safari.UI.Process
 {    
-    public partial class EspecieProcess : ProcessComponent
+    public partial class EspecieProcess : ProcessComponent, IProcess
     {       
         public List<Especie> ListarTodos()
         {
@@ -42,5 +42,6 @@ namespace Safari.UI.Process
             
             return result;
         }
+
     }
 }

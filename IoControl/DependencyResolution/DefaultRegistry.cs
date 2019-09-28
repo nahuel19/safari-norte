@@ -16,9 +16,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace IoControl.DependencyResolution {
+    using Safari.UI.Process;
+    using StructureMap;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
-	
+
     public class DefaultRegistry : Registry {
         #region Constructors and Destructors
 
@@ -29,7 +31,7 @@ namespace IoControl.DependencyResolution {
                     scan.WithDefaultConventions();
 					scan.With(new ControllerConvention());
                 });
-            //For<IExample>().Use<Example>();
+            For<IProcess>().Use<EspecieProcess>();
         }
 
         #endregion

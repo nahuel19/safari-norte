@@ -9,11 +9,18 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
 {
     public class EspecieController : Controller
     {
+        private IProcess _process;
+
+        public EspecieController(IProcess process)
+        {
+            this._process = process;
+        }
+
         // GET: Especie
         public ActionResult Index()
         {
-            EspecieProcess ep = new EspecieProcess();
-            return View(ep.ListarTodos());
+            
+            return View(_process.ListarTodos());
         }
 
         // GET: Especie/Details/5
