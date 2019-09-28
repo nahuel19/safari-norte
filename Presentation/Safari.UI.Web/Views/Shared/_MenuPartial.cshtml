@@ -1,7 +1,18 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-<ul class="nav navbar-nav">
-        <li>@Html.ActionLink("Citas", "Index", "Citas")</li>
-</ul>
+    <ul class="nav navbar-nav">
+        <li>
+            @Html.ActionLink("Citas", "Index", "Citas")
+        </li>
+    </ul>
+
+    if (HttpContext.Current.User.IsInRole("Administrador"))
+    {
+        <ul class="nav navbar-nav">
+            <li>
+                @Html.ActionLink("Dashboard", "Index", "Dashboard", new { area = "Admin" }, null)
+            </li>
+        </ul>
+    }
 }
