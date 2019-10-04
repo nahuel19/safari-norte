@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace Safari.UI.Process
 {
-    public interface IProcess
+    public interface IProcess<TEntity> where TEntity : EntityBase
     {
-        List<Especie> ListarTodos();
+        List<TEntity> ToList();
+        TEntity Find(int? id);
+        TEntity Add(TEntity entity);
+        TEntity Edit(TEntity entity);
+        TEntity Remove(TEntity entity);
     }
 }

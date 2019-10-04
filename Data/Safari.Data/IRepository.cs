@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Safari.Data
 {
-    public interface IRepository<TEntity> where TEntity : IEntity
+    public interface IRepository<TEntity> where TEntity : EntityBase
     {
                 
         TEntity Create(TEntity entity);

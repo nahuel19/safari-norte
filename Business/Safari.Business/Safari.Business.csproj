@@ -47,6 +47,10 @@
       <Project>{E7F80528-1454-4817-92B3-8E5265514128}</Project>
       <Name>Safari.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\Safari.Services.Contracts\Safari.Services.Contracts.csproj">
+      <Project>{aed38724-3f4a-4128-8843-e65d4d821b41}</Project>
+      <Name>Safari.Services.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\Safari.Entities\Safari.Entities.csproj">
       <Project>{DED5F661-C299-47EB-AE50-B64BE8FEEBC9}</Project>
       <Name>Safari.Entities</Name>

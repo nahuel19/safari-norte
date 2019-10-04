@@ -8,6 +8,8 @@ using System.Data.Common;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using Safari.Entities;
 using Safari.Data;
+using Safari.Framework.Common;
+using Safari.Framework.Logging;
 
 namespace Safari.Data
 {
@@ -15,23 +17,33 @@ namespace Safari.Data
     {
         public Especie Create(Especie especie)
         {
-            const string SQL_STATEMENT = "INSERT INTO Especie ([Nombre]) VALUES(@Nombre); SELECT SCOPE_IDENTITY();";
+            const string SQL_STATEMENT = "INSERT INTO Especies([Nombre]) VALUES(@Nombre); SELECT SCOPE_IDENTITY();";
 
-            var db = DatabaseFactory.CreateDatabase("DefaultConnection");
-            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            try
             {
-                db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, especie.Nombre);
-                especie.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
+                var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+                using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+                {
+                    db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, especie.Nombre);
+                    especie.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
+                }
+            }
+            catch (Exception ex)
+            {
+                var log = ServiceFactory.Get<ILoggingService>();
+                log.Error(ex); //Trace
+                var wrapper = new Exception("Error personalizado por el Usuario.", ex);
+                throw wrapper;
             }
             return especie;
         }
-		
+
         public List<Especie> Read()
         {
-            const string SQL_STATEMENT = "SELECT [Id], [Nombre] FROM Especie ";
+            const string SQL_STATEMENT = "SELECT [Id], [Nombre] FROM Especies ";
 
             List<Especie> result = new List<Especie>();
-            var db = DatabaseFactory.CreateDatabase("DefaultConnection");
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
                 using (IDataReader dr = db.ExecuteReader(cmd))
@@ -45,13 +57,13 @@ namespace Safari.Data
             }
             return result;
         }
-		
+
         public Especie ReadBy(int id)
         {
-            const string SQL_STATEMENT = "SELECT [Id], [Nombre] FROM Especie WHERE [Id]=@Id ";
+            const string SQL_STATEMENT = "SELECT [Id], [Nombre] FROM Especies WHERE [Id]=@Id ";
             Especie especie = null;
 
-            var db = DatabaseFactory.CreateDatabase("DefaultConnection");
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
                 db.AddInParameter(cmd, "@Id", DbType.Int32, id);
@@ -65,12 +77,12 @@ namespace Safari.Data
             }
             return especie;
         }
-		
+
         public void Update(Especie especie)
         {
-            const string SQL_STATEMENT = "UPDATE Especie SET [Nombre]= @Nombre WHERE [Id]= @Id ";
+            const string SQL_STATEMENT = "UPDATE Especies SET [Nombre]= @Nombre WHERE [Id]= @Id ";
 
-            var db = DatabaseFactory.CreateDatabase("DefaultConnection");
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
                 db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, especie.Nombre);
@@ -78,18 +90,54 @@ namespace Safari.Data
                 db.ExecuteNonQuery(cmd);
             }
         }
-		
+
         public void Delete(int id)
         {
-            const string SQL_STATEMENT = "DELETE Especie WHERE [Id]= @Id ";
-            var db = DatabaseFactory.CreateDatabase("DefaultConnection");
+            const string SQL_STATEMENT = "DELETE Especies WHERE [Id]= @Id ";
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
                 db.AddInParameter(cmd, "@Id", DbType.Int32, id);
                 db.ExecuteNonQuery(cmd);
             }
         }
-		
+
+        public List<Especie> SelectPage(int currentPage)
+        {
+            const string SQL_STATEMENT =
+                "WITH SortedEspecie AS " +
+                "(SELECT ROW_NUMBER() OVER (ORDER BY [Id]) AS RowNumber, " +
+                    "[Id] " +
+                    "FROM dbo.Especie " +
+                ") SELECT * FROM SortedEspecie " +
+                "WHERE RowNumber BETWEEN @StartIndex AND @EndIndex";
+
+            long startIndex = (currentPage * base.PageSize);
+            long endIndex = startIndex + base.PageSize;
+
+            startIndex += 1;
+            List<Especie> result = new List<Especie>();
+
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@StartIndex", DbType.Int64, startIndex);
+                db.AddInParameter(cmd, "@EndIndex", DbType.Int64, endIndex);
+
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    while (dr.Read())
+                    {
+                        Especie especie = new Especie();
+                        especie.Id = GetDataValue<int>(dr, "Id");
+                        result.Add(especie);
+                    }
+                }
+            }
+
+            return result;
+        }
+
         private Especie LoadEspecie(IDataReader dr)
         {
             Especie especie = new Especie();

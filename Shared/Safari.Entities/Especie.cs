@@ -10,24 +10,27 @@ using System.Runtime.Serialization;
 namespace Safari.Entities
 {
 
-    public partial class Especie : IEntity
+    [Serializable]
+    [DataContract]
+    public partial class Especie : EntityBase
     {
+
+        private string _nombre;
+
+        [DataMember]
         [DisplayName("Id")]
-        public int Id { get; set; }
+        public override int Id { get; set; }
 
-
+        [DataMember]
         [DisplayName("Nombre")]
-        [Required]
-        public string Nombre { get; set; }
-
-        public override string ToString()
+        public string Nombre
         {
-            return this.GetType().Name + ": " +
-                string.Join(",", this.GetType().GetProperties()
-                .Where(p => !p.PropertyType.IsGenericType && !p.PropertyType.IsArray)
-                .Select(p => string.Format("{0}={1}", p.Name, p.GetValue(this, null))));
+            get { return _nombre; }
+            set
+            {
+                _nombre = value;
+                NotifyPropertyChanged("Nombre");
+            }
         }
-
-        public virtual ICollection<Paciente> Pacientes { get; set; }
     }
 }
