@@ -207,6 +207,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Imagenes\iconomundo.png" />
     <Content Include="Imagenes\iconomundo2.png" />
+    <Content Include="Imagenes\monitor-admin.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

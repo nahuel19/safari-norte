@@ -20,15 +20,15 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
         private IEspecieService _especieService;
         private EspecieProcess db;
 
-        public EspecieController()
-        {
-
-        }
-
         public EspecieController(IEspecieService especieService)
         {
             _especieService = especieService;
             db = new EspecieProcess(_especieService);
+        }
+
+        public EspecieController()
+        {
+
         }
 
 
