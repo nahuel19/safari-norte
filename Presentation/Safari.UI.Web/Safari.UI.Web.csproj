@@ -290,6 +290,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\IoC\IoC.csproj">
+      <Project>{f6ce6cd9-434c-41c4-afec-a0e04cbc3ec4}</Project>
+      <Name>IoC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\Safari.Services.Contracts\Safari.Services.Contracts.csproj">
       <Project>{aed38724-3f4a-4128-8843-e65d4d821b41}</Project>
       <Name>Safari.Services.Contracts</Name>
@@ -301,6 +305,10 @@
     <ProjectReference Include="..\..\Shared\Safari.Entities\Safari.Entities.csproj">
       <Project>{DED5F661-C299-47EB-AE50-B64BE8FEEBC9}</Project>
       <Name>Safari.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\Safari.Framework\Safari.Framework.csproj">
+      <Project>{ce444dae-9cbc-4f1d-9049-09489620bf63}</Project>
+      <Name>Safari.Framework</Name>
     </ProjectReference>
     <ProjectReference Include="..\Safari.UI.Process\Safari.UI.Process.csproj">
       <Project>{7B34EC89-2823-4817-ADAD-942A08C1AC24}</Project>

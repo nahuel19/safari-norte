@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2037
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{907CBC28-C980-4F1C-953B-2BCF4972327A}"
 EndProject
@@ -34,6 +34,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Safari.UI.Process", "Presentation\Safari.UI.Process\Safari.UI.Process.csproj", "{7B34EC89-2823-4817-ADAD-942A08C1AC24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Safari.UI.Web", "Presentation\Safari.UI.Web\Safari.UI.Web.csproj", "{71DA4554-DEAC-457D-B6AC-FBAF99D4E868}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoC", "IoC\IoC.csproj", "{F6CE6CD9-434C-41C4-AFEC-A0E04CBC3EC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{71DA4554-DEAC-457D-B6AC-FBAF99D4E868}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71DA4554-DEAC-457D-B6AC-FBAF99D4E868}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71DA4554-DEAC-457D-B6AC-FBAF99D4E868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6CE6CD9-434C-41C4-AFEC-A0E04CBC3EC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6CE6CD9-434C-41C4-AFEC-A0E04CBC3EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6CE6CD9-434C-41C4-AFEC-A0E04CBC3EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6CE6CD9-434C-41C4-AFEC-A0E04CBC3EC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{90E7F5B6-64BE-4CC2-91D7-FA888B9E8F11} = {A0D4AAA9-EC90-4F98-A043-C5AE852EB380}
 		{7B34EC89-2823-4817-ADAD-942A08C1AC24} = {730D501B-CAE2-4506-90D7-6114151C12C2}
 		{71DA4554-DEAC-457D-B6AC-FBAF99D4E868} = {730D501B-CAE2-4506-90D7-6114151C12C2}
+		{F6CE6CD9-434C-41C4-AFEC-A0E04CBC3EC4} = {EDA8F664-1283-4334-BFB7-8AE0A6F68DAB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32CBD675-B882-4ECC-8CDC-61961C70DA10}
