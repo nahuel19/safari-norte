@@ -1,25 +1,26 @@
-using Safari.Entities;
+﻿using Safari.Entities;
 using Safari.Framework.Common;
-using Safari.Services;
 using Safari.Services.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Linq;
 using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Safari.UI.Process
-{    
-    public partial class EspecieProcess : ProcessComponent, IProcess<Especie>
+{
+    public partial class SalaProcess: ProcessComponent, IProcess<Sala>
     {
-        private IService<Especie> _iService;
+        private IService<Sala> _iService;
 
-        public EspecieProcess(IService<Especie> iService)
+        public SalaProcess(IService<Sala> iService)
         {
             _iService = iService;
         }
-        public List<Especie> ToList()
+        public List<Sala> ToList()
         {
-            List<Especie> result = default(List<Especie>);
+            List<Sala> result = default(List<Sala>);
             var proxy = _iService;
             try
             {
@@ -32,9 +33,9 @@ namespace Safari.UI.Process
             return result;
         }
 
-        public Especie Find(int? id)
+        public Sala Find(int? id)
         {
-            Especie result = default(Especie);
+            Sala result = default(Sala);
             var proxy = _iService;
             try
             {
@@ -47,14 +48,14 @@ namespace Safari.UI.Process
             return result;
         }
 
-        public Especie Add(Especie especie)
+        public Sala Add(Sala sala)
         {
-            Especie result = default(Especie);
-            var proxy = ServiceFactory.Get<IService<Especie>>();
+            Sala result = default(Sala);
+            var proxy = ServiceFactory.Get<IService<Sala>>();
 
             try
             {
-                result = proxy.Add(especie);
+                result = proxy.Add(sala);
             }
             catch (FaultException fex)
             {
@@ -64,14 +65,14 @@ namespace Safari.UI.Process
             return result;
         }
 
-        public Especie Edit(Especie especie)
+        public Sala Edit(Sala sala)
         {
-            Especie result = default(Especie);
+            Sala result = default(Sala);
             var proxy = _iService;
 
             try
             {
-                proxy.Edit(especie);
+                proxy.Edit(sala);
             }
             catch (FaultException fex)
             {
@@ -81,14 +82,14 @@ namespace Safari.UI.Process
             return result;
         }
 
-        public Especie Remove(Especie especie)
+        public Sala Remove(Sala sala)
         {
-            Especie result = default(Especie);
+            Sala result = default(Sala);
             var proxy = _iService;
 
             try
             {
-                proxy.Remove(especie);
+                proxy.Remove(sala);
             }
             catch (FaultException fex)
             {
@@ -97,6 +98,5 @@ namespace Safari.UI.Process
 
             return result;
         }
-
     }
 }

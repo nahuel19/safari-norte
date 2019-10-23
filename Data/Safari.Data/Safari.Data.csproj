@@ -51,6 +51,7 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="PacienteDac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalaDAC.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

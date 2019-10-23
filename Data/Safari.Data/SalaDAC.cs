@@ -1,31 +1,31 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Data;
-using System.Data.Common;
-using Microsoft.Practices.EnterpriseLibrary.Data;
+﻿using Microsoft.Practices.EnterpriseLibrary.Data;
 using Safari.Entities;
-using Safari.Data;
 using Safari.Framework.Common;
 using Safari.Framework.Logging;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Safari.Data
 {
-    public partial class EspecieDAC : DataAccessComponent, IRepository<Especie>
+    public partial class SalaDAC : DataAccessComponent, IRepository<Sala>
     {
-        public Especie Create(Especie especie)
+        public Sala Create(Sala sala)
         {
-            const string SQL_STATEMENT = "INSERT INTO Especies([Nombre]) VALUES(@Nombre); SELECT SCOPE_IDENTITY();";
+            const string SQL_STATEMENT = "INSERT INTO Sala([Nombre],[TipoSala]) VALUES(@Nombre, @TipoSala); SELECT SCOPE_IDENTITY();";
 
             try
             {
                 var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
                 using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
                 {
-                    db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, especie.Nombre);
-                    especie.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
+                    db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, sala.Nombre);
+                    db.AddInParameter(cmd, "@TipoSala", DbType.AnsiString, sala.TipoSala);
+                    sala.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
                 }
             }
             catch (Exception ex)
@@ -35,14 +35,14 @@ namespace Safari.Data
                 var wrapper = new Exception("Error personalizado por el Usuario.", ex);
                 throw wrapper;
             }
-            return especie;
+            return sala;
         }
 
-        public List<Especie> Read()
+        public List<Sala> Read()
         {
-            const string SQL_STATEMENT = "SELECT [Id], [Nombre] FROM Especies ";
+            const string SQL_STATEMENT = "SELECT * FROM Sala ";
 
-            List<Especie> result = new List<Especie>();
+            List<Sala> result = new List<Sala>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
@@ -50,18 +50,18 @@ namespace Safari.Data
                 {
                     while (dr.Read())
                     {
-                        Especie especie = LoadEspecie(dr);
-                        result.Add(especie);
+                        Sala sala = LoadSala(dr);
+                        result.Add(sala);
                     }
                 }
             }
             return result;
         }
 
-        public Especie ReadBy(int id)
+        public Sala ReadBy(int id)
         {
-            const string SQL_STATEMENT = "SELECT [Id], [Nombre] FROM Especies WHERE [Id]=@Id ";
-            Especie especie = null;
+            const string SQL_STATEMENT = "SELECT * FROM Sala WHERE [Id]=@Id ";
+            Sala sala = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
@@ -71,29 +71,30 @@ namespace Safari.Data
                 {
                     if (dr.Read())
                     {
-                        especie = LoadEspecie(dr);
+                        sala = LoadSala(dr);
                     }
                 }
             }
-            return especie;
+            return sala;
         }
 
-        public void Update(Especie especie)
+        public void Update(Sala sala)
         {
-            const string SQL_STATEMENT = "UPDATE Especies SET [Nombre]= @Nombre WHERE [Id]= @Id ";
+            const string SQL_STATEMENT = "UPDATE Sala SET [Nombre]= @Nombre, [TipoSala]= @TipoSala  WHERE [Id]= @Id ";
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
-                db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, especie.Nombre);
-                db.AddInParameter(cmd, "@Id", DbType.Int32, especie.Id);
+                db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, sala.Nombre);
+                db.AddInParameter(cmd, "@TipoSala", DbType.AnsiString, sala.TipoSala);
+                db.AddInParameter(cmd, "@Id", DbType.Int32, sala.Id);
                 db.ExecuteNonQuery(cmd);
             }
         }
 
         public void Delete(int id)
         {
-            const string SQL_STATEMENT = "DELETE Especies WHERE [Id]= @Id ";
+            const string SQL_STATEMENT = "DELETE Sala WHERE [Id]= @Id ";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
@@ -102,21 +103,21 @@ namespace Safari.Data
             }
         }
 
-        //public List<Especie> SelectPage(int currentPage)
+        //public List<Sala> SelectPage(int currentPage)
         //{
         //    const string SQL_STATEMENT =
-        //        "WITH SortedEspecie AS " +
+        //        "WITH SortedSala AS " +
         //        "(SELECT ROW_NUMBER() OVER (ORDER BY [Id]) AS RowNumber, " +
         //            "[Id] " +
-        //            "FROM dbo.Especie " +
-        //        ") SELECT * FROM SortedEspecie " +
+        //            "FROM dbo.Sala " +
+        //        ") SELECT * FROM SortedSala " +
         //        "WHERE RowNumber BETWEEN @StartIndex AND @EndIndex";
 
         //    long startIndex = (currentPage * base.PageSize);
         //    long endIndex = startIndex + base.PageSize;
 
         //    startIndex += 1;
-        //    List<Especie> result = new List<Especie>();
+        //    List<Sala> result = new List<Sala>();
 
         //    var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
         //    using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
@@ -128,9 +129,9 @@ namespace Safari.Data
         //        {
         //            while (dr.Read())
         //            {
-        //                Especie especie = new Especie();
-        //                especie.Id = GetDataValue<int>(dr, "Id");
-        //                result.Add(especie);
+        //                Sala sala = new Sala();
+        //                sala.Id = GetDataValue<int>(dr, "Id");
+        //                result.Add(sala);
         //            }
         //        }
         //    }
@@ -138,13 +139,13 @@ namespace Safari.Data
         //    return result;
         //}
 
-        private Especie LoadEspecie(IDataReader dr)
+        private Sala LoadSala(IDataReader dr)
         {
-            Especie especie = new Especie();
-            especie.Id = GetDataValue<int>(dr, "Id");
-            especie.Nombre = GetDataValue<string>(dr, "Nombre");
-            return especie;
+            Sala sala = new Sala();
+            sala.Id = GetDataValue<int>(dr, "Id");
+            sala.Nombre = GetDataValue<string>(dr, "Nombre");
+            sala.TipoSala = GetDataValue<string>(dr, "TipoSala");
+            return sala;
         }
     }
 }
-

@@ -111,6 +111,10 @@
       <Project>{c1742601-b74e-492e-9465-c4465d9ae02d}</Project>
       <Name>Safari.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shared\Safari.Entities\Safari.Entities.csproj">
+      <Project>{ded5f661-c299-47eb-ae50-b64be8feebc9}</Project>
+      <Name>Safari.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

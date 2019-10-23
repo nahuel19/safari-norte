@@ -15,63 +15,63 @@ using Safari.Services.Contracts;
 
 namespace Safari.UI.Web.Areas.Admin.Controllers
 {
-    public class EspecieController : Controller
+    public class SalaController : Controller
     {
-        private IService<Especie> _especieService;
-        private EspecieProcess db;
+        private IService<Sala> _salaService;
+        private SalaProcess db;
 
-        public EspecieController(IService<Especie> especieService)
+        public SalaController(IService<Sala> salaService)
         {
-            _especieService = especieService;
-            db = new EspecieProcess(_especieService);
+            _salaService = salaService;
+            db = new SalaProcess(_salaService);
         }
 
-        public EspecieController()
+        public SalaController()
         {
 
         }
 
 
 
-        // GET: Especie
+        
         public ActionResult Index()
         {
             return View(db.ToList());
         }
 
-        // GET: Especie/Details/5
+        
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Especie especie = db.Find(id);
-            if (especie == null)
+            Sala sala = db.Find(id);
+            if (sala == null)
             {
                 return HttpNotFound();
             }
-            return View(especie);
+            return View(sala);
         }
 
-        // GET: Especie/Create
+        
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Especie/Create
+        
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre")] Especie especie)
+        public ActionResult Create(Sala sala)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    db.Add(especie);
+                    db.Add(sala);
                     TempData["MessageViewBagName"] = new GenericMessageViewModel
                     {
                         Message = "Registro agregado a la base de datos.", 
@@ -91,61 +91,61 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
                 }
             }
 
-            return View(especie);
+            return View(sala);
         }
 
-        // GET: Especie/Edit/5
+        
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Especie especie = db.Find(id);
-            if (especie == null)
+            Sala sala = db.Find(id);
+            if (sala == null)
             {
                 return HttpNotFound();
             }
-            return View(especie);
+            return View(sala);
         }
 
-        // POST: Especie/Edit/5
+        
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre")] Especie especie)
+        public ActionResult Edit(Sala sala)
         {
             if (ModelState.IsValid)
             {
-                db.Edit(especie);
+                db.Edit(sala);
                 return RedirectToAction("Index");
             }
-            return View(especie);
+            return View(sala);
         }
 
-        // GET: Especie/Delete/5
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Especie especie = db.Find(id);
-            if (especie == null)
+            Sala sala = db.Find(id);
+            if (sala == null)
             {
                 return HttpNotFound();
             }
-            return View(especie);
+            return View(sala);
         }
 
-        // POST: Especie/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Especie especie = db.Find(id);
-            db.Remove(especie);
+            Sala sala = db.Find(id);
+            db.Remove(sala);
             return RedirectToAction("Index");
         }
 

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Safari.Entities
 {
-    public class Sala : IEntity
+    public class Sala : EntityBase
     {
-        public int Id { get; set; }
+        public override int Id { get; set; }
         public string Nombre { get; set; }
         public string TipoSala { get; set; }
     }

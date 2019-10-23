@@ -20,6 +20,7 @@ namespace IoC.DependencyResolution {
     using StructureMap.Graph;
     using Safari.Services.Contracts;
     using Safari.Services;
+    using Safari.Entities;
 
     public class DefaultRegistry : Registry {
         #region Constructors and Destructors
@@ -31,7 +32,8 @@ namespace IoC.DependencyResolution {
                     scan.WithDefaultConventions();
 					scan.With(new ControllerConvention());
                 });
-            For<IEspecieService>().Use<EspecieService>();
+            For<IService<Especie>>().Use<EspecieService>();
+            For<IService<Sala>>().Use<SalaService>();
         }
 
         #endregion

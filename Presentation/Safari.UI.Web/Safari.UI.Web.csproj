@@ -180,6 +180,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\EspecieController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SalaController.cs" />
     <Compile Include="Constants\Application.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -227,6 +228,11 @@
     <Content Include="Areas\Admin\Views\Especie\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Especie\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Especie\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Sala\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Sala\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Sala\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Sala\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Sala\Delete.cshtml" />
     <None Include="Properties\PublishProfiles\safari.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

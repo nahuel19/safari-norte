@@ -8,7 +8,7 @@ using Safari.Services.Contracts;
 namespace Safari.Business
 {
    
-    public partial class EspecieComponent : IEspecieService /*IService<Especie>*/
+    public partial class EspecieComponent : IComponent<Especie>
     {
         public Especie Add(Especie especie)
         {

@@ -9,7 +9,8 @@ using Safari.Services.Contracts;
 namespace Safari.Services
 {    
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, ConcurrencyMode = ConcurrencyMode.Multiple)]
-    public class EspecieService : IEspecieService/*IService<Especie>*/
+
+    public class EspecieService : IService<Especie>
     {
         public Especie Add(Especie especie)
         {
