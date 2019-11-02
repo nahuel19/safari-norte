@@ -17,7 +17,7 @@ namespace Safari.Data
     {
         public Especie Create(Especie especie)
         {
-            const string SQL_STATEMENT = "INSERT INTO Especies([Nombre]) VALUES(@Nombre); SELECT SCOPE_IDENTITY();";
+            const string SQL_STATEMENT = "INSERT INTO Especie([Nombre]) VALUES(@Nombre); SELECT SCOPE_IDENTITY();";
 
             try
             {
@@ -40,7 +40,7 @@ namespace Safari.Data
 
         public List<Especie> Read()
         {
-            const string SQL_STATEMENT = "SELECT [Id], [Nombre] FROM Especies ";
+            const string SQL_STATEMENT = "SELECT [Id], [Nombre] FROM Especie ";
 
             List<Especie> result = new List<Especie>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -60,7 +60,7 @@ namespace Safari.Data
 
         public Especie ReadBy(int id)
         {
-            const string SQL_STATEMENT = "SELECT [Id], [Nombre] FROM Especies WHERE [Id]=@Id ";
+            const string SQL_STATEMENT = "SELECT [Id], [Nombre] FROM Especie WHERE [Id]=@Id ";
             Especie especie = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -80,7 +80,7 @@ namespace Safari.Data
 
         public void Update(Especie especie)
         {
-            const string SQL_STATEMENT = "UPDATE Especies SET [Nombre]= @Nombre WHERE [Id]= @Id ";
+            const string SQL_STATEMENT = "UPDATE Especie SET [Nombre]= @Nombre WHERE [Id]= @Id ";
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
@@ -93,7 +93,7 @@ namespace Safari.Data
 
         public void Delete(int id)
         {
-            const string SQL_STATEMENT = "DELETE Especies WHERE [Id]= @Id ";
+            const string SQL_STATEMENT = "DELETE Especie WHERE [Id]= @Id ";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {

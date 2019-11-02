@@ -30,8 +30,6 @@ namespace Safari.UI.Web.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Safari.Entities.Especie> Especies { get; set; }
-
-        public System.Data.Entity.DbSet<Safari.Entities.Sala> Salas { get; set; }
+      
     }
 }
