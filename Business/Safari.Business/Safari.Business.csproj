@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClienteComponent.cs" />
     <Compile Include="EspecieComponent.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

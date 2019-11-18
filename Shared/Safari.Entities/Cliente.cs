@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Safari.Entities
 {
-    public class Cliente : IEntity
+    public class Cliente : EntityBase
     {
-        public int Id { get; set; }
+        public override int Id { get; set; }
         public string Apellido { get; set; }
         public string Nombre { get; set; }
         public string Email { get; set; }
@@ -17,7 +17,6 @@ namespace Safari.Entities
         public DateTime FechaNacimiento { get; set; }
         public string Domicilio { get; set; }
 
-        public virtual ICollection<Paciente> Pacientes { get; set; }
-        public virtual ICollection<Movimiento> Movimientos { get; set; }
+   
     }
 }

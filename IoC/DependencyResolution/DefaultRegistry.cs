@@ -34,6 +34,7 @@ namespace IoC.DependencyResolution {
                 });
             For<IService<Especie>>().Use<EspecieService>();
             For<IService<Sala>>().Use<SalaService>();
+            For<IService<Cliente>>().Use<ClienteService>();
         }
 
         #endregion
