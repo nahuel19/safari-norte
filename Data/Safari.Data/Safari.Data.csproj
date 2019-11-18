@@ -50,6 +50,7 @@
     <Compile Include="DataAccessComponent.cs" />
     <Compile Include="EspecieDAC.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="MedicoDAC.cs" />
     <Compile Include="PacienteDac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaDAC.cs" />

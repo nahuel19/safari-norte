@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Safari.Entities
 {
-    public class Medico : IEntity
+    public class Medico : EntityBase
     {
-        public int Id { get; set; }
+        public override int Id { get; set; }
         public string TipoMatricula  { get; set; }
         public int NumeroMatricula  { get; set; }
         public string Apellido { get; set; }

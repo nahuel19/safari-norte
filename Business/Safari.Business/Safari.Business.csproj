@@ -42,6 +42,7 @@
     <Compile Include="ClienteComponent.cs" />
     <Compile Include="EspecieComponent.cs" />
     <Compile Include="IComponent.cs" />
+    <Compile Include="MedicoComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaComponent.cs" />
   </ItemGroup>

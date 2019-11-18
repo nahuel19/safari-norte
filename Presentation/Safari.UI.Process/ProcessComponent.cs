@@ -100,5 +100,24 @@ namespace Safari.UI.Process
             }
             return result;
         }
+
+
+        public static T HttpPost<T, TRequest>(string path, TRequest value, string mediaType)
+        {
+
+            var pathAndQuery = path.EndsWith("/") ? path : path += "/";
+            T result = default(T);
+            using (var client = new HttpClient())
+            {
+                Type typeOft = typeof(T);
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["serviceUrl"]);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType));
+
+                var response = client.PostAsJsonAsync(pathAndQuery, value).Result;
+                response.EnsureSuccessStatusCode();
+                result = response.Content.ReadAsAsync<T>().Result;
+            }
+            return result;
+        }
     }
 }
