@@ -296,12 +296,12 @@
     <Content Include="Areas\Admin\Views\Cliente\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Cliente\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Cliente\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Cliente\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Medico\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Medico\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Medico\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Medico\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Medico\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Cliente\Delete.cshtml" />
     <None Include="Properties\PublishProfiles\safari.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\datepicker-esAR.js" />

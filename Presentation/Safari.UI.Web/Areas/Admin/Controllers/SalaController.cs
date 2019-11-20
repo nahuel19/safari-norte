@@ -57,6 +57,10 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
         
         public ActionResult Create()
         {
+            var sala = new Sala();
+            SelectList list = new SelectList(sala.TiposSalas);
+            ViewData["ListaSalas"] = list;
+
             return View();
         }
 
@@ -101,7 +105,13 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+           
             Sala sala = db.Find(id);
+
+            SelectList list = new SelectList(sala.TiposSalas);
+            ViewData["ListaSalas"] = list;
+
             if (sala == null)
             {
                 return HttpNotFound();

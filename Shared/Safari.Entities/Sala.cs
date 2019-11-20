@@ -11,5 +11,7 @@ namespace Safari.Entities
         public override int Id { get; set; }
         public string Nombre { get; set; }
         public string TipoSala { get; set; }
+
+        public string[] TiposSalas = new string[] { "Recuperación", "Quirófano", "Vacunatorio"};
     }
 }
