@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Safari.Entities
 {
-    public class TipoServicio : IEntity
+    public class TipoServicio : EntityBase
     {
-        public int Id { get; set; }
+        public override int Id { get; set; }
         public string Nombre { get; set; }
 
-        public virtual ICollection<Precio> Precios { get; set; }
+        
     }
 }

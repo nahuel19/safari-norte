@@ -17,5 +17,7 @@ namespace Safari.Entities
         public DateTime FechaNacimiento  { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
-}
+
+        public string[] TiposMatriculas = new string[] { "MP", "MN" };
+    }
 }

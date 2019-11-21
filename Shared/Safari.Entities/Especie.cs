@@ -32,5 +32,7 @@ namespace Safari.Entities
                 NotifyPropertyChanged("Nombre");
             }
         }
+
+        public virtual ICollection<Paciente> Pacientes { get; set; }
     }
 }

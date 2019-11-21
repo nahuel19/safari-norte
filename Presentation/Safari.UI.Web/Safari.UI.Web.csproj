@@ -198,11 +198,14 @@
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\EspecieController.cs" />
     <Compile Include="Areas\Admin\Controllers\MedicoController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PacienteController.cs" />
     <Compile Include="Areas\Admin\Controllers\SalaController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TipoServicioController.cs" />
     <Compile Include="Constants\Application.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MedicoApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -302,6 +305,16 @@
     <Content Include="Areas\Admin\Views\Medico\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Medico\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Cliente\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Paciente\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Paciente\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Paciente\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Paciente\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Paciente\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TipoServicio\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TipoServicio\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\TipoServicio\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TipoServicio\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TipoServicio\Delete.cshtml" />
     <None Include="Properties\PublishProfiles\safari.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\datepicker-esAR.js" />
@@ -360,6 +373,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\MedicoApi\Index.cshtml" />
+    <Content Include="Views\MedicoApi\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -36,6 +36,9 @@ namespace IoC.DependencyResolution {
             For<IService<Sala>>().Use<SalaService>();
             For<IService<Cliente>>().Use<ClienteService>();
             For<IService<Medico>>().Use<MedicoService>();
+            For<IService<Paciente>>().Use<PacienteService>();
+            For<IService<TipoServicio>>().Use<TipoServicioService>();
+
 
         }
 

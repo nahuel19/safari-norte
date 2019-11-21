@@ -11,18 +11,18 @@ using System.Web.Mvc;
 
 namespace Safari.UI.Web.Areas.Admin.Controllers
 {
-    public class MedicoController : Controller
+    public class TipoServicioController : Controller
     {
-        private IService<Medico> _medicoService;
-        private MedicoProcess db;
+        private IService<TipoServicio> _tipoServicioService;
+        private TipoServicioProcess db;
 
-        public MedicoController(IService<Medico> medicoService)
+        public TipoServicioController(IService<TipoServicio> tipoServicioService)
         {
-            _medicoService = medicoService;
-            db = new MedicoProcess(_medicoService);
+            _tipoServicioService = tipoServicioService;
+            db = new TipoServicioProcess(_tipoServicioService);
         }
 
-        public MedicoController()
+        public TipoServicioController()
         {
 
         }
@@ -42,21 +42,17 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medico medico = db.Find(id);
-            if (medico == null)
+            TipoServicio tipoServicio = db.Find(id);
+            if (tipoServicio == null)
             {
                 return HttpNotFound();
             }
-            return View(medico);
+            return View(tipoServicio);
         }
 
 
         public ActionResult Create()
         {
-            var medico = new Medico();
-            SelectList list = new SelectList(medico.TiposMatriculas);
-            ViewData["ListaMatriculas"] = list;
-
             return View();
         }
 
@@ -65,13 +61,13 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Medico medico)
+        public ActionResult Create(TipoServicio tipoServicio)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    db.Add(medico);
+                    db.Add(tipoServicio);
                     TempData["MessageViewBagName"] = new GenericMessageViewModel
                     {
                         Message = "Registro agregado a la base de datos.",
@@ -91,7 +87,7 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
                 }
             }
 
-            return View(medico);
+            return View(tipoServicio);
         }
 
 
@@ -101,16 +97,12 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medico medico = db.Find(id);
-
-            SelectList list = new SelectList(medico.TiposMatriculas);
-            ViewData["ListaMatriculas"] = list;
-
-            if (medico == null)
+            TipoServicio tipoServicio = db.Find(id);
+            if (tipoServicio == null)
             {
                 return HttpNotFound();
             }
-            return View(medico);
+            return View(tipoServicio);
         }
 
 
@@ -118,14 +110,14 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Medico medico)
+        public ActionResult Edit(TipoServicio tipoServicio)
         {
             if (ModelState.IsValid)
             {
-                db.Edit(medico);
+                db.Edit(tipoServicio);
                 return RedirectToAction("Index");
             }
-            return View(medico);
+            return View(tipoServicio);
         }
 
 
@@ -135,12 +127,12 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medico medico = db.Find(id);
-            if (medico == null)
+            TipoServicio tipoServicio = db.Find(id);
+            if (tipoServicio == null)
             {
                 return HttpNotFound();
             }
-            return View(medico);
+            return View(tipoServicio);
         }
 
 
@@ -148,8 +140,8 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Medico medico = db.Find(id);
-            db.Remove(medico);
+            TipoServicio tipoServicio = db.Find(id);
+            db.Remove(tipoServicio);
             return RedirectToAction("Index");
         }
 

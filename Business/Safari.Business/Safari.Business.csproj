@@ -43,8 +43,10 @@
     <Compile Include="EspecieComponent.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="MedicoComponent.cs" />
+    <Compile Include="PacienteComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaComponent.cs" />
+    <Compile Include="TipoServicioComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Safari.Data\Safari.Data.csproj">
