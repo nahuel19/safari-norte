@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Safari.Entities.Paciente>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Pacientes";
 }
 
-<h2>Index</h2>
+<h2>Pacientes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-primary @*btn-sm*@" })
+    @Html.ActionLink("Crear Nuevo", "Create", "", new { @class = "btn btn-primary @*btn-sm*@" })
 </p>
 <table class="table">
     <tr>
@@ -35,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.ClienteId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Especie.Nombre)
+            @Html.DisplayFor(modelItem => item.EspecieId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)

@@ -10,14 +10,15 @@ using System.Threading.Tasks;
 
 namespace Safari.UI.Process
 {
-    public partial class MedicoApiProcess : ProcessComponent
+    
+    public partial class EspecieApiProcess : ProcessComponent
     {
-        public List<Medico> ToList()
+        public List<Especie> ToList()
         {
-            var result = default(List<Medico>);
+            var result = default(List<Especie>);
             try
             {
-                var response = HttpGet<ListarTodosMedicoResponse>("api/Medico/ListarTodos", new Dictionary<string, object>(), MediaType.Json);
+                var response = HttpGet<ListarTodosEspecieResponse>("api/Especie/ListarTodos", new Dictionary<string, object>(), MediaType.Json);
                 result = response.Result;
             }
             catch (FaultException fex)
@@ -29,13 +30,13 @@ namespace Safari.UI.Process
 
 
 
-        public Medico Add(Medico medico)
+        public Especie Add(Especie especie)
         {
-            Medico result = default(Medico);
+            Especie result = default(Especie);
             try
             {
-                var request = new MedicoRequest() { Medico = medico };
-                var response = HttpPost<MedicoResponse, MedicoRequest>("api/Medico/Agregar", request, MediaType.Json);
+                var request = new EspecieRequest() { Especie = especie };
+                var response = HttpPost<EspecieResponse, EspecieRequest>("api/Especie/Agregar", request, MediaType.Json);
                 result = response.Result;
             }
             catch (FaultException fex)
@@ -47,13 +48,13 @@ namespace Safari.UI.Process
         }
 
 
-        public void Update(Medico medico)
+        public void Update(Especie especie)
         {
             try
             {
-                var request = new MedicoRequest() { Medico = medico };
-                var response = HttpPost<MedicoResponse, MedicoRequest>("api/Medico/Actualizar", request, MediaType.Json);
-
+                var request = new EspecieRequest() { Especie = especie };
+                var response = HttpPost<EspecieResponse, EspecieRequest>("api/Especie/Actualizar", request, MediaType.Json);
+                
             }
             catch (Exception ex)
             {
@@ -62,14 +63,14 @@ namespace Safari.UI.Process
         }
 
 
-        public void Delete(Medico medico)
+        public void Delete(Especie especie)
         {
             try
             {
-                var request = new MedicoRequest() { Medico = medico };
-                var r = HttpPost<MedicoRequest>("api/Medico/Eliminar", request, MediaType.Json);
-
-
+                var request = new EspecieRequest() { Especie = especie };
+                var r = HttpPost<EspecieRequest>("api/Especie/Eliminar", request, MediaType.Json);
+                
+                
             }
             catch (Exception ex)
             {
@@ -77,13 +78,13 @@ namespace Safari.UI.Process
             }
         }
 
-        public Medico ReadBy(int id)
+        public Especie ReadBy(int id)
         {
             try
             {
-                var parameters = new Dictionary<string, object> { { "id", id } };
+                var parameters = new Dictionary<string, object> {{ "id", id }};
 
-                var response = HttpGet<MedicoResponse>("api/Medico/LeerPorId", parameters, MediaType.Json);
+                var response = HttpGet<EspecieResponse>("api/Especie/LeerPorId", parameters, MediaType.Json);
                 return response.Result;
             }
             catch (Exception ex)

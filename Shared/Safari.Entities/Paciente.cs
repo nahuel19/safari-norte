@@ -11,11 +11,11 @@ namespace Safari.Entities
     {
         public override int Id { get; set; }
         public int ClienteId { get; set; }
-        public virtual Cliente Cliente { get; set; }
+        public Cliente Cliente { get; set; }
         public string  Nombre { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public int EspecieId { get; set; }
-        public virtual Especie Especie { get; set; }
+        public Especie Especie { get; set; }
         public string Observacion { get; set; }
     }
 }

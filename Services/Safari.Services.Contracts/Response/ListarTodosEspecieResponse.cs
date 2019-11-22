@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace Safari.Services.Contracts.Response
 {
-    
     [DataContract]
-    public partial class ListarTodosMedicoResponse
+    public partial class ListarTodosEspecieResponse
     {
         [DataMember]
-        public List<Medico> Result { get; set; }
+        public List<Especie> Result { get; set; }
     }
 }

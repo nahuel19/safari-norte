@@ -12,19 +12,18 @@ using System.Web.Http;
 
 namespace Safari.Services.Http
 {
-
-    [RoutePrefix("api/Medico")]
-    public class MedicoServiceHttp : ApiController
+    [RoutePrefix("api/Especie")]
+    public class EspecieServiceHttp : ApiController
     {
         [HttpPost]
         [Route("Agregar")]
-        public MedicoResponse Agregar(MedicoRequest request)
+        public EspecieResponse Agregar(EspecieRequest request)
         {
             try
             {
-                var response = new MedicoResponse();
-                var bc = new MedicoComponent();
-                response.Result = bc.Add(request.Medico);
+                var response = new EspecieResponse();
+                var bc = new EspecieComponent();
+                response.Result = bc.Add(request.Especie);
                 return response;
             }
             catch (Exception ex)
@@ -40,12 +39,12 @@ namespace Safari.Services.Http
 
         [HttpGet]
         [Route("ListarTodos")]
-        public ListarTodosMedicoResponse ListarTodos()
+        public ListarTodosEspecieResponse ListarTodos()
         {
             try
             {
-                var response = new ListarTodosMedicoResponse();
-                var bc = new MedicoComponent();
+                var response = new ListarTodosEspecieResponse();
+                var bc = new EspecieComponent();
                 response.Result = bc.ToList();
                 return response;
             }
@@ -53,7 +52,7 @@ namespace Safari.Services.Http
             {
                 var httpError = new HttpResponseMessage()
                 {
-                    StatusCode = (HttpStatusCode)422,
+                    StatusCode = (HttpStatusCode)422, 
                     ReasonPhrase = ex.Message
                 };
                 throw new HttpResponseException(httpError);
@@ -63,12 +62,12 @@ namespace Safari.Services.Http
 
         [HttpGet]
         [Route("LeerPorId")]
-        public MedicoResponse LeerPorId(int id)
+        public EspecieResponse LeerPorId(int id)
         {
             try
             {
-                var response = new MedicoResponse();
-                var bc = new MedicoComponent();
+                var response = new EspecieResponse();
+                var bc = new EspecieComponent();
                 response.Result = bc.Find(id);
                 return response;
             }
@@ -86,12 +85,12 @@ namespace Safari.Services.Http
 
         [HttpPost]
         [Route("Actualizar")]
-        public void Actualizar(MedicoRequest request)
+        public void Actualizar(EspecieRequest request)
         {
             try
             {
-                var bc = new MedicoComponent();
-                bc.Edit(request.Medico);
+                var bc = new EspecieComponent();
+                bc.Edit(request.Especie);
             }
             catch (Exception ex)
             {
@@ -107,12 +106,12 @@ namespace Safari.Services.Http
 
         [HttpDelete]
         [Route("Eliminar")]
-        public void Eliminar(MedicoRequest request)
+        public void Eliminar(EspecieRequest request)
         {
             try
             {
-                var bc = new MedicoComponent();
-                bc.Remove(request.Medico);
+                var bc = new EspecieComponent();
+                bc.Remove(request.Especie);
             }
             catch (Exception ex)
             {

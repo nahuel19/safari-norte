@@ -3,14 +3,16 @@
 @{
     ViewBag.Title = "Edit";
 }
-
+@section head {
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+}
 <h2>Edit</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Paciente</h4>
         <hr />
@@ -20,7 +22,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ClienteId, "ClienteId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ClienteId", null, htmlAttributes: new { @class = "form-control" })
+                @*@Html.DropDownList("ClienteId", null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.EditorFor(model => model.ClienteId, new { htmlAttributes = new { @class = "form-control" } })
+
                 @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,7 +40,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FechaNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "datefield form-control" } })
                 @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -44,7 +48,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EspecieId, "EspecieId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("EspecieId", null, htmlAttributes: new { @class = "form-control" })
+                @*@Html.DropDownList("EspecieId", null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.EditorFor(model => model.EspecieId, new { htmlAttributes = new { @class = "form-control" } })
+
                 @Html.ValidationMessageFor(model => model.EspecieId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -71,4 +77,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/datepicker-esAR.js"></script>
 }

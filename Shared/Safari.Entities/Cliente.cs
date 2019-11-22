@@ -17,6 +17,6 @@ namespace Safari.Entities
         public DateTime FechaNacimiento { get; set; }
         public string Domicilio { get; set; }
 
-        public virtual ICollection<Paciente> Pacientes { get; set; }
+        
     }
 }

@@ -80,7 +80,8 @@
 
         $(document).ready(function () {
         $(".iframe").fancybox({
-           type: 'iframe'
+            type: 'iframe', 
+            afterClose: function () { window.location.reload(); },
         }); 
         });
     </script>
