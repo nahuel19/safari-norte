@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Safari.Entities
 {
-    public class TipoMovimiento : IEntity
+    public class TipoMovimiento : EntityBase
     {
-        public int Id { get; set; }
+        public override int Id { get; set; }
         public string Nombre { get; set; }
         public int Multiplicador { get; set; }
 
-        public virtual ICollection<Movimiento> Movimientos { get; set; }
+        
     }
 }
