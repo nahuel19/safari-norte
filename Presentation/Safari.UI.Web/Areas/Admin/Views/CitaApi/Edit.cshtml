@@ -3,14 +3,16 @@
 @{
     ViewBag.Title = "Edit";
 }
-
+@section head {
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+}
 <h2>Edit</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Cita</h4>
         <hr />
@@ -20,7 +22,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "datefield form-control" } })
                 @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -60,7 +62,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("Estado", ViewData["ListaEstados"] as SelectList)
                 @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -137,4 +139,8 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/datepicker-esAR.js"></script>
+
 }

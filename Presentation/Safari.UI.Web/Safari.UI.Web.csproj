@@ -197,6 +197,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CalendarioController.cs" />
     <Compile Include="Areas\Admin\Controllers\CitaApiController.cs" />
     <Compile Include="Areas\Admin\Controllers\ClienteController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Areas\Admin\Controllers\TipoMovimientoApiController.cs" />
     <Compile Include="Areas\Admin\Controllers\TipoMovimientoController.cs" />
     <Compile Include="Areas\Admin\Controllers\TipoServicioController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\CitaViewModel.cs" />
     <Compile Include="Constants\Application.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -282,6 +284,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagenes\ico1.png" />
+    <Content Include="Imagenes\ico2.png" />
+    <Content Include="Imagenes\ico3.png" />
     <Content Include="Imagenes\iconomundo.png" />
     <Content Include="Imagenes\iconomundo2.png" />
     <Content Include="Imagenes\monitor-admin.png" />
@@ -364,6 +369,8 @@
     <Content Include="Areas\Admin\Views\CitaApi\Details.cshtml" />
     <Content Include="Areas\Admin\Views\CitaApi\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CitaApi\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Cliente\AgregarMascota.cshtml" />
+    <Content Include="Areas\Admin\Views\Calendario\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\safari.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

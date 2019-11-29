@@ -24,17 +24,29 @@ namespace Safari.Entities
         [DisplayName("MedicoId")]
         public int MedicoId { get; set; }
 
+        [DisplayName("Medico")]
+        public Medico Medico { get; set; }
+
         [DataMember]
         [DisplayName("PacienteId")]
         public int PacienteId { get; set; }
+
+        [DisplayName("Paciente")]
+        public Paciente Paciente { get; set; }
 
         [DataMember]
         [DisplayName("SalaId")]
         public int SalaId { get; set; }
 
+        [DisplayName("Sala")]
+        public Sala Sala { get; set; }
+
         [DataMember]
         [DisplayName("TipoServicioId")]
         public int TipoServicioId { get; set; }
+
+        [DisplayName("TipoServicio")]
+        public TipoServicio TipoServicio { get; set; }
 
         [DataMember]
         [DisplayName("Estado")]
@@ -42,7 +54,7 @@ namespace Safari.Entities
 
         [DataMember]
         [DisplayName("CreatedBy")]
-        public int CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
 
         [DataMember]
         [DisplayName("CreatedDate")]
@@ -50,7 +62,7 @@ namespace Safari.Entities
 
         [DataMember]
         [DisplayName("ChangedBy")]
-        public int ChangedBy { get; set; }
+        public string ChangedBy { get; set; }
 
         [DataMember]
         [DisplayName("ChangedDate")]
@@ -58,7 +70,7 @@ namespace Safari.Entities
 
         [DataMember]
         [DisplayName("DeletedBy")]
-        public int DeletedBy { get; set; }
+        public string DeletedBy { get; set; }
 
         [DataMember]
         [DisplayName("DeletedDate")]
@@ -67,7 +79,7 @@ namespace Safari.Entities
         [DataMember]
         [DisplayName("Deleted")]
         public bool Deleted { get; set; }
-     
 
+        public string[] TipoEstado = new string[] { "Cancelado", "Realizado", "Confirmado", "Reservado" };
     }
 }

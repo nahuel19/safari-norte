@@ -1,16 +1,12 @@
 ﻿@model Safari.Entities.Paciente
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "AgregarMascota";
 }
 @section head {
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-    <link href="~/Content/css/themes/base/jquery.ui.all.css" rel="stylesheet" />
-
-
-
 }
-<h2>Create</h2>
+<h2>AgregarMascota</h2>
 
 
 @using (Html.BeginForm())
@@ -24,9 +20,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ClienteId, "ClienteId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.DropDownList("ClienteId", null, htmlAttributes: new { @class = "form-control" })*@
-                @Html.EditorFor(model => model.ClienteId, new { htmlAttributes = new { @class = "form-control" } })
 
+                @Html.EditorFor(model => model.ClienteId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DisplayFor(model => model.Cliente.Apellido)
                 @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -50,33 +46,25 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EspecieId, "EspecieId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.DropDownList("EspecieId", null, htmlAttributes: new { @class = "form-control" })*@
-                @*@Html.EditorFor(model => model.EspecieId, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.DropDownList("EspecieId", ViewData["Especies"] as SelectList)
                 @Html.ValidationMessageFor(model => model.EspecieId, "", new { @class = "text-danger" })
             </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Observacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Observacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Observacion, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-@*<fieldset>
-    <legend>Especie</legend>
-    <input type="text" id="EspecieId" placeholder="Buscar">
-</fieldset>*@
-
-
-<div class="form-group">
-    @Html.LabelFor(model => model.Observacion, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.EditorFor(model => model.Observacion, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Observacion, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
     </div>
-</div>
-
-<div class="form-group">
-    <div class="col-md-offset-2 col-md-10">
-        <input type="submit" value="Create" class="btn btn-default" />
-    </div>
-</div>
-</div>
 }
 
 <div>
@@ -88,16 +76,5 @@
 
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/datepicker-esAR.js"></script>
-
-    <script src="~/Content/js/jquery-1.4.2.js"></script>
-    <script src="~/Content/js/jquery-ui-1.8.2.custom.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#productName').autocomplete({
-                source: '@Url.Action("Search", "Paciente")'
-            });
-        });
-    </script>
 
 }

@@ -30,13 +30,13 @@ namespace Safari.Data
                     db.AddInParameter(cmd, "@TipoServicioId", DbType.Int32, cita.TipoServicioId);
                     db.AddInParameter(cmd, "@Estado", DbType.AnsiString, cita.Estado);
 
-                    db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, cita.CreatedBy);
+                    db.AddInParameter(cmd, "@CreatedBy", DbType.AnsiString, cita.CreatedBy);
                     db.AddInParameter(cmd, "@CreatedDate", DbType.DateTime, cita.CreatedDate);
 
-                    db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, cita.ChangedBy);
+                    db.AddInParameter(cmd, "@ChangedBy", DbType.AnsiString, cita.ChangedBy);
                     db.AddInParameter(cmd, "@ChangedDate", DbType.DateTime, cita.ChangedDate);
 
-                    db.AddInParameter(cmd, "@DeletedBy", DbType.Int32, cita.DeletedBy);
+                    db.AddInParameter(cmd, "@DeletedBy", DbType.AnsiString, cita.DeletedBy);
                     db.AddInParameter(cmd, "@DeletedDate", DbType.DateTime, cita.DeletedDate);
 
                     db.AddInParameter(cmd, "@Deleted", DbType.Boolean, cita.Deleted);
@@ -119,13 +119,13 @@ namespace Safari.Data
                 db.AddInParameter(cmd, "@TipoServicioId", DbType.Int32, cita.TipoServicioId);
                 db.AddInParameter(cmd, "@Estado", DbType.AnsiString, cita.Estado);
 
-                db.AddInParameter(cmd, "@CreatedBy", DbType.Int32, cita.CreatedBy);
+                db.AddInParameter(cmd, "@CreatedBy", DbType.AnsiString, cita.CreatedBy);
                 db.AddInParameter(cmd, "@CreatedDate", DbType.DateTime, cita.CreatedDate);
 
-                db.AddInParameter(cmd, "@ChangedBy", DbType.Int32, cita.ChangedBy);
+                db.AddInParameter(cmd, "@ChangedBy", DbType.AnsiString, cita.ChangedBy);
                 db.AddInParameter(cmd, "@ChangedDate", DbType.DateTime, cita.ChangedDate);
 
-                db.AddInParameter(cmd, "@DeletedBy", DbType.Int32, cita.DeletedBy);
+                db.AddInParameter(cmd, "@DeletedBy", DbType.AnsiString, cita.DeletedBy);
                 db.AddInParameter(cmd, "@DeletedDate", DbType.DateTime, cita.DeletedDate);
 
                 db.AddInParameter(cmd, "@Deleted", DbType.Boolean, cita.Deleted);
@@ -145,13 +145,13 @@ namespace Safari.Data
             cita.TipoServicioId = GetDataValue<int>(dr, "TipoServicioId");
             cita.Estado = GetDataValue<string>(dr, "Estado");
 
-            cita.CreatedBy = GetDataValue<int>(dr, "CreatedBy");
+            cita.CreatedBy = GetDataValue<string>(dr, "CreatedBy");
             cita.CreatedDate = GetDataValue<DateTime>(dr, "CreatedDate");
 
-            cita.ChangedBy = GetDataValue<int>(dr, "ChangedBy");
+            cita.ChangedBy = GetDataValue<string>(dr, "ChangedBy");
             cita.ChangedDate = GetDataValue<DateTime>(dr, "ChangedDate");
 
-            cita.DeletedBy = GetDataValue<int>(dr, "DeletedBy");
+            cita.DeletedBy = GetDataValue<string>(dr, "DeletedBy");
             cita.DeletedDate = GetDataValue<DateTime>(dr, "DeletedDate");
 
             cita.Deleted = GetDataValue<bool>(dr, "Deleted");

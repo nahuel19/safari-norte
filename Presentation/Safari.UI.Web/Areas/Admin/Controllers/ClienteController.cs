@@ -4,6 +4,7 @@ using Safari.UI.Process;
 using Safari.UI.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -16,10 +17,16 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
         private IService<Cliente> _clienteService;
         private ClienteProcess db;
 
-        public ClienteController(IService<Cliente> clienteService)
+        private IService<Paciente> _pacienteService;
+        private PacienteProcess pp;
+
+        public ClienteController(IService<Cliente> clienteService, IService<Paciente> pacienteService)
         {
             _clienteService = clienteService;
             db = new ClienteProcess(_clienteService);
+
+            _pacienteService = pacienteService;
+            pp = new PacienteProcess(_pacienteService);
         }
 
         public ClienteController()
@@ -153,5 +160,51 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+        public ActionResult AgregarMascota(int id)
+        {
+            var obj = new Paciente();
+            var dueño = db.Find(id);
+            obj.Cliente = dueño;
+            obj.ClienteId = dueño.Id;
+
+
+            EspecieApiProcess eap = new EspecieApiProcess();
+
+            var especies = eap.ToList();
+            var listEspecies = new SelectList(especies, "Id", "Nombre");
+            ViewData["Especies"] = listEspecies;
+
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        public ActionResult AgregarMascota(Paciente collection)
+        {
+            
+
+            try {
+                //HttpPostedFileBase FileBase = Request.Files[0];
+                //WebImage image = new WebImage(FileBase.InputStream);
+
+                //collection.ImagePet = image.GetBytes();
+
+               
+            
+                pp.Add(collection);
+                return RedirectToAction("Index");
+            }
+
+            catch (DataException ex)
+            {
+                
+                return View();
+            }
+
+        }
+
     }
 }

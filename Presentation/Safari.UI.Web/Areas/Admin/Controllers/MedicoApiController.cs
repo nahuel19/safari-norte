@@ -20,6 +20,9 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
+            var medico = new Medico();
+            SelectList list = new SelectList(medico.TiposMatriculas);
+            ViewData["ListaMatriculas"] = list;
             return View();
         }
 
@@ -65,6 +68,10 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
             }
             var p = new MedicoApiProcess();
             Medico medico = p.ReadBy(id.Value);
+
+            SelectList list = new SelectList(medico.TiposMatriculas);
+            ViewData["ListaMatriculas"] = list;
+
             if (medico == null)
             {
                 return HttpNotFound();

@@ -54,7 +54,14 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
 
             public ActionResult Create()
             {
-                
+                EspecieApiProcess eap = new EspecieApiProcess();
+                var especies = eap.ToList();
+
+                var listEspecies = new SelectList(especies, "Id", "Nombre");
+
+                ViewData["Especies"] = listEspecies;
+
+
                 return View();
             }
 
@@ -101,13 +108,18 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
                 }
                 Paciente paciente = db.Find(id);
 
-               
+                EspecieApiProcess eap = new EspecieApiProcess();
+                var especies = eap.ToList();
+
+                var listEspecies = new SelectList(especies, "Id", "Nombre");
+
+                ViewData["Especies"] = listEspecies;
 
                 if (paciente == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(paciente);
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(paciente);
             }
 
 
@@ -158,6 +170,16 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
                 }
                 base.Dispose(disposing);
             }
+
+
+
+        public ActionResult Search(string term)
+        {
+            var dbEsp = new EspecieApiProcess().ToList();
+            var names = dbEsp.Where(p => p.Nombre.Contains(term)).Select(p => p.Nombre).ToList();
+            return Json(names, JsonRequestBehavior.AllowGet);
         }
+
+    }
     
 }

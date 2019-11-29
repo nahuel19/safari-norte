@@ -31,6 +31,7 @@ namespace Safari.Business
             Cita result = default(Cita);
             var citaDAC = new CitaDAC();
             result = citaDAC.ReadBy(id.Value);
+
             return result;
         }
 
@@ -40,6 +41,9 @@ namespace Safari.Business
 
             var citaDAC = new CitaDAC();
             result = citaDAC.Read();
+
+
+      
             return result;
 
         }
