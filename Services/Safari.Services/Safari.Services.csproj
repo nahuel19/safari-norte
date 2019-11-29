@@ -43,9 +43,12 @@
     <Compile Include="ClienteService.cs" />
     <Compile Include="EspecieService.cs" />
     <Compile Include="MedicoService.cs" />
+    <Compile Include="MovimientoService.cs" />
     <Compile Include="PacienteService.cs" />
+    <Compile Include="PrecioService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaService.cs" />
+    <Compile Include="TipoMovimientoService.cs" />
     <Compile Include="TipoServicioService.cs" />
   </ItemGroup>
   <ItemGroup>

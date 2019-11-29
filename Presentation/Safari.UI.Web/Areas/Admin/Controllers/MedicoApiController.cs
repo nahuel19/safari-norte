@@ -75,7 +75,7 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre")] Medico medico)
+        public ActionResult Edit(Medico medico)
         {
             if (ModelState.IsValid)
             {

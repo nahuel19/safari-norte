@@ -42,15 +42,36 @@
   <ItemGroup>
     <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\CitaRequest.cs" />
+    <Compile Include="Request\ClienteRequest.cs" />
     <Compile Include="Request\EspecieRequest.cs" />
     <Compile Include="Request\MedicoRequest.cs" />
+    <Compile Include="Request\MovimientoRequest.cs" />
+    <Compile Include="Request\PacienteRequest.cs" />
+    <Compile Include="Request\PrecioRequest.cs" />
+    <Compile Include="Request\SalaRequest.cs" />
     <Compile Include="Request\TipoMovimientoRequest.cs" />
+    <Compile Include="Request\TipoServicioRequest.cs" />
+    <Compile Include="Response\CitaResponse.cs" />
+    <Compile Include="Response\ClienteResponse.cs" />
     <Compile Include="Response\EspecieResponse.cs" />
+    <Compile Include="Response\ListarTodosCitaResponse.cs" />
+    <Compile Include="Response\ListarTodosClienteResponse.cs" />
     <Compile Include="Response\ListarTodosEspecieResponse.cs" />
     <Compile Include="Response\ListarTodosMedicoResponse.cs" />
+    <Compile Include="Response\ListarTodosMovimientoResponse.cs" />
+    <Compile Include="Response\ListarTodosPacienteResponse.cs" />
+    <Compile Include="Response\ListarTodosPrecioResponse.cs" />
+    <Compile Include="Response\ListarTodosSalaResponse.cs" />
     <Compile Include="Response\ListarTodosTipoMovimientoResponse.cs" />
+    <Compile Include="Response\ListarTodosTipoServicioResponse.cs" />
     <Compile Include="Response\MedicoResponse.cs" />
+    <Compile Include="Response\MovimientoResponse.cs" />
+    <Compile Include="Response\PacienteResponse.cs" />
+    <Compile Include="Response\PrecioResponse.cs" />
+    <Compile Include="Response\SalaResponse.cs" />
     <Compile Include="Response\TipoMovimientoResponse.cs" />
+    <Compile Include="Response\TipoServicioResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\Safari.Entities\Safari.Entities.csproj">

@@ -12,6 +12,41 @@ namespace Safari.UI.Process
 {
     public partial class MedicoApiProcess : ProcessComponent
     {
+        //public List<Medico> ToList()
+        //{
+        //    var result = default(List<Medico>);
+        //    try
+        //    {
+        //        var response = HttpGet<ListarTodosMedicoResponse>("api/Medico/ListarTodos", new Dictionary<string, object>(), MediaType.Json);
+        //        result = response.Result;
+        //    }
+        //    catch (FaultException fex)
+        //    {
+        //        throw new ApplicationException(fex.Message);
+        //    }
+        //    return result;
+        //}
+
+        //public Medico Create(Medico medico)
+        //{
+        //    MedicoResponse response = default(MedicoResponse);
+        //    MedicoRequest payload = new MedicoRequest();
+        //    try
+        //    {
+        //        payload.Medico = medico;
+        //        response = HttpPost<MedicoResponse, MedicoRequest>(
+        //            "api/Medico/Agregar",
+        //            payload,
+        //            MediaType.Json
+        //        );
+        //    }
+        //    catch (FaultException fex)
+        //    {
+        //        throw new ApplicationException(fex.Message);
+        //    }
+        //    return response.Result;
+        //}
+
         public List<Medico> ToList()
         {
             var result = default(List<Medico>);

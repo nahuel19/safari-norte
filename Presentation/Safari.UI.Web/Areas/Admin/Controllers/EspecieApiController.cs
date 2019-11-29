@@ -6,16 +6,54 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace Safari.UI.Web.Areas.Admin.Controllers
 {
     public class EspecieApiController : Controller
     {
         // GET: Admin/EspecieApi
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             var p = new EspecieApiProcess();
-            return View(p.ToList());
+            var lista = p.ToList();
+
+            ViewBag.CurrentSort = sortOrder;
+
+            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var especie = from s in lista select s;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                especie = especie.Where(s => s.Nombre.Contains(searchString));
+            }
+
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    especie = especie.OrderByDescending(s => s.Nombre);
+                    break;
+                default:
+                    especie = especie.OrderBy(s => s.Nombre);
+                    break;
+            }
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(especie.ToPagedList(pageNumber, pageSize));
         }
 
 
@@ -107,11 +145,11 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
         // POST: Especie/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Especie especie)
         {
             var p = new EspecieApiProcess();
             
-            Especie especie = p.ReadBy(id);
+            //Especie especie = p.ReadBy(id);
             p.Delete(especie);
             return RedirectToAction("Index");
         }

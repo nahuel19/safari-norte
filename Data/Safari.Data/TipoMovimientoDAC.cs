@@ -20,7 +20,7 @@ namespace Safari.Data
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
                 db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, tipomovimiento.Nombre);
-                db.AddInParameter(cmd, "@Multiplicador", DbType.UInt16, tipomovimiento.Multiplicador);
+                db.AddInParameter(cmd, "@Multiplicador", DbType.Int16, tipomovimiento.Multiplicador);
                 tipomovimiento.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
             return tipomovimiento;

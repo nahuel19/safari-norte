@@ -31,6 +31,23 @@ namespace Safari.Business
             Cliente result = default(Cliente);
             var clienteDAC = new ClienteDAC();
             result = clienteDAC.ReadBy(id.Value);
+
+            result.Pacientes = new List<Paciente>();
+            //busco mascotas-------------------------
+            List<Paciente> pacientes = default(List<Paciente>);
+            var pacienteDAC = new PacienteDAC();
+            pacientes = pacienteDAC.Read();
+
+            foreach(var p in pacientes)
+            {
+                if (p.ClienteId == result.Id)
+                {
+                    result.Pacientes.Add(p);
+                }
+            }
+            
+            //----------------------------------------
+            
             return result;
         }
 

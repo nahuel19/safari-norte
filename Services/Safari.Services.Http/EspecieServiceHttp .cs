@@ -111,6 +111,7 @@ namespace Safari.Services.Http
             try
             {
                 var bc = new EspecieComponent();
+                //var especie = bc.Find(id);
                 bc.Remove(request.Especie);
             }
             catch (Exception ex)

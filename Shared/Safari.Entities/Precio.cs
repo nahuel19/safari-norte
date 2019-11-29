@@ -1,26 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Safari.Entities
 {
-    public class Precio : IEntity
+    [Serializable]
+    [DataContract]
+    public class Precio : EntityBase
     {
-        [Key]
-        [ForeignKey("TipoServicio")]
-        public int Id { get; set; }
+        [DataMember]
+        [DisplayName("Id")]
+        public override int Id { get; set; }
+
+        [DataMember]
+        [DisplayName("TipoServicioId")]
+        public int TipoServicioId { get; set; }
+
+        [DisplayName("TipoServicio")]
         public TipoServicio TipoServicio { get; set; }
 
-        [Key]
+        [DataMember]
+        [DisplayName("FechaDesde")]
         public DateTime FechaDesde { get; set; }
-        
-        [Key]
+
+        [DataMember]
+        [DisplayName("FechaHasta")]
         public DateTime FechaHasta { get; set; }
 
-        public int Valor { get; set; }
+        [DataMember]
+        [DisplayName("Valor")]
+        public double Valor { get; set; }
     }
 }

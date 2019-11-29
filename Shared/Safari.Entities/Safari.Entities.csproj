@@ -43,7 +43,6 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="Especie.cs" />
-    <Compile Include="IEntity.cs" />
     <Compile Include="Medico.cs" />
     <Compile Include="Movimiento.cs" />
     <Compile Include="Paciente.cs" />

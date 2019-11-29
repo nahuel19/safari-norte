@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CitaApiProcess.cs" />
     <Compile Include="ClienteProcess.cs" />
     <Compile Include="EspecieApiProcess.cs" />
     <Compile Include="EspecieProcess.cs" />
@@ -68,10 +69,15 @@
     <Compile Include="MediaType.cs" />
     <Compile Include="MedicoApiProcess.cs" />
     <Compile Include="MedicoProcess.cs" />
+    <Compile Include="MovimientoProcess.cs" />
     <Compile Include="PacienteProcess.cs" />
+    <Compile Include="PrecioApiProcess.cs" />
+    <Compile Include="PrecioProcess.cs" />
     <Compile Include="ProcessComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaProcess.cs" />
+    <Compile Include="TipoMovimientoApiProcess.cs" />
+    <Compile Include="TipoMovimientoProcess.cs" />
     <Compile Include="TipoServicioProcess.cs" />
   </ItemGroup>
   <ItemGroup>

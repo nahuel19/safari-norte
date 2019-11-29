@@ -53,7 +53,7 @@ namespace Safari.UI.Process
             try
             {
                 var request = new EspecieRequest() { Especie = especie };
-                var response = HttpPost<EspecieResponse, EspecieRequest>("api/Especie/Actualizar", request, MediaType.Json);
+                HttpPost<EspecieResponse, EspecieRequest>("api/Especie/Actualizar", request, MediaType.Json);
                 
             }
             catch (Exception ex)
@@ -68,15 +68,18 @@ namespace Safari.UI.Process
             try
             {
                 var request = new EspecieRequest() { Especie = especie };
-                var r = HttpPost<EspecieRequest>("api/Especie/Eliminar", request, MediaType.Json);
-                
-                
+                HttpPost<EspecieResponse, EspecieRequest>("api/Especie/Eliminar", request, MediaType.Json);
+
+
             }
             catch (Exception ex)
             {
                 throw new ApplicationException(ex.Message);
             }
         }
+
+
+       
 
         public Especie ReadBy(int id)
         {

@@ -31,6 +31,10 @@ namespace Safari.Business
             Paciente result = default(Paciente);
             var pacienteDAC = new PacienteDAC();
             result = pacienteDAC.ReadBy(id.Value);
+
+            result.Cliente = new ClienteDAC().ReadBy(result.ClienteId);
+            result.Especie = new EspecieDAC().ReadBy(result.EspecieId);
+
             return result;
         }
 
@@ -40,6 +44,14 @@ namespace Safari.Business
 
             var pacienteDAC = new PacienteDAC();
             result = pacienteDAC.Read();
+
+            foreach(var r in result)
+            {
+                r.Cliente = new ClienteDAC().ReadBy(r.ClienteId);
+                r.Especie = new EspecieDAC().ReadBy(r.EspecieId);
+            }
+
+
             return result;
 
         }
