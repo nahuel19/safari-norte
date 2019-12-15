@@ -12,18 +12,18 @@ using System.Web.Http;
 
 namespace Safari.Services.Http
 {
-    [RoutePrefix("api/Especie")]
-    public class EspecieServiceHttp : ApiController
+    [RoutePrefix("api/Movimiento")]
+    public class MovimientoServiceHttp : ApiController
     {
         [HttpPost]
         [Route("Agregar")]
-        public EspecieResponse Agregar(EspecieRequest request)
+        public MovimientoResponse Agregar(MovimientoRequest request)
         {
             try
             {
-                var response = new EspecieResponse();
-                var bc = new EspecieComponent();
-                response.Result = bc.Add(request.Especie);
+                var response = new MovimientoResponse();
+                var bc = new MovimientoComponent();
+                response.Result = bc.Add(request.Movimiento);
                 return response;
             }
             catch (Exception ex)
@@ -39,12 +39,12 @@ namespace Safari.Services.Http
 
         [HttpGet]
         [Route("ListarTodos")]
-        public ListarTodosEspecieResponse ListarTodos()
+        public ListarTodosMovimientoResponse ListarTodos()
         {
             try
             {
-                var response = new ListarTodosEspecieResponse();
-                var bc = new EspecieComponent();
+                var response = new ListarTodosMovimientoResponse();
+                var bc = new MovimientoComponent();
                 response.Result = bc.ToList();
                 return response;
             }
@@ -52,7 +52,7 @@ namespace Safari.Services.Http
             {
                 var httpError = new HttpResponseMessage()
                 {
-                    StatusCode = (HttpStatusCode)422, 
+                    StatusCode = (HttpStatusCode)422,
                     ReasonPhrase = ex.Message
                 };
                 throw new HttpResponseException(httpError);
@@ -62,12 +62,12 @@ namespace Safari.Services.Http
 
         [HttpGet]
         [Route("LeerPorId")]
-        public EspecieResponse LeerPorId(int id)
+        public MovimientoResponse LeerPorId(int id)
         {
             try
             {
-                var response = new EspecieResponse();
-                var bc = new EspecieComponent();
+                var response = new MovimientoResponse();
+                var bc = new MovimientoComponent();
                 response.Result = bc.Find(id);
                 return response;
             }
@@ -85,12 +85,12 @@ namespace Safari.Services.Http
 
         [HttpPost]
         [Route("Actualizar")]
-        public void Actualizar(EspecieRequest request)
+        public void Actualizar(MovimientoRequest request)
         {
             try
             {
-                var bc = new EspecieComponent();
-                bc.Edit(request.Especie);
+                var bc = new MovimientoComponent();
+                bc.Edit(request.Movimiento);
             }
             catch (Exception ex)
             {
@@ -106,13 +106,13 @@ namespace Safari.Services.Http
 
         [HttpPost]
         [Route("Eliminar")]
-        public void Eliminar(EspecieRequest request)
+        public void Eliminar(MovimientoRequest request)
         {
             try
             {
-                var bc = new EspecieComponent();
+                var bc = new MovimientoComponent();
                 //var especie = bc.Find(id);
-                bc.Remove(request.Especie);
+                bc.Remove(request.Movimiento);
             }
             catch (Exception ex)
             {

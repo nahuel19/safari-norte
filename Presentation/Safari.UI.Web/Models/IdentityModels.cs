@@ -31,5 +31,7 @@ namespace Safari.UI.Web.Models
         }
 
         public System.Data.Entity.DbSet<Safari.Entities.Cita> Citas { get; set; }
+
+        public System.Data.Entity.DbSet<Safari.Entities.Cliente> Clientes { get; set; }
     }
 }

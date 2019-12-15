@@ -1,5 +1,4 @@
-﻿<!------------LAYOUT DE ADMIN----------->
-
+﻿<!------------LAYOUT DE FUNCY----------->
 <!DOCTYPE html>
 <html>
 
@@ -66,11 +65,11 @@
 
     @* Custom Fonts - If you are using custom fonts. Consider using the Google Web Fonts Loader in async mode.
         See https://github.com/typekit/webfontloader. *@
-    
+
     <meta name="x-font-awesome-stylesheet-fallback-test" class="fa">
     @Styles.Render("~/Content/fa")
     @Scripts.Render("~/bundles/modernizr")
-    
+
     @* Description - Used by search engines. Aim for more than 160 characters. *@
     <meta name="description" content="@ViewBag.Description">
     @* Author - (Optional) Used by search engines. The author of the page. *@
@@ -113,36 +112,10 @@
 
     @Styles.Render("~/Content/css-admin")
 
-    
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Dashboard", "Index", "Dashboard", new { area = "Admin" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Medicos", "Index", "MedicoApi")</li>
-                    <li>@Html.ActionLink("Clientes", "Index", "Cliente")</li>
-                    <li>@Html.ActionLink("Pacientes", "Index", "Paciente")</li>
-                    <li>@Html.ActionLink("Citas", "Index", "CitaApi")</li>
-                    <li>@Html.ActionLink("Salas", "Index", "Sala")</li>
-                    <li>@Html.ActionLink("Especies", "Index", "EspecieApi")</li>
-                    <li>@Html.ActionLink("Precios", "Index", "PrecioApi")</li>
-                    <li>@Html.ActionLink("Movimientos", "Index", "Movimiento")</li>
-                    <li>@Html.ActionLink("Tipo Movimientos", "Index", "TipoMovimientoApi")</li>
-                    <li>@Html.ActionLink("Tipo Servicios", "Index", "TipoServicio")</li>
-
-                </ul>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="container body-content">
         @RenderBody()

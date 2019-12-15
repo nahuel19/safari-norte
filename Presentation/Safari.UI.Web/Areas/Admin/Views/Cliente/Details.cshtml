@@ -1,86 +1,82 @@
 ﻿@model Safari.Entities.Cliente
 
 @{
-    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Funcy.cshtml";
 }
+        @Styles.Render("~/Content/css-admin")
+<!DOCTYPE html>
 
-<h2>Details</h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Cliente</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </dt>
 
-<div>
-    <h4>Cliente</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Apellido)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Apellido)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Apellido)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Telefono)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Url)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Url)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Url)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Url)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaNacimiento)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FechaNacimiento)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FechaNacimiento)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Domicilio)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Domicilio)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Domicilio)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Domicilio)
-        </dd>
-
-        <dt>
-            Mascotas
-        </dt>
-
-        @foreach (var item in Model.Pacientes)
-        {
-        <dd>
-            @Html.DisplayFor(model => item.Nombre)
-        </dd>
-        }
-
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning btn-xs" })
+        
+    </p>
+</body>
+</html>

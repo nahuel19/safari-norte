@@ -143,9 +143,8 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
         }
 
         // POST: Especie/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Especie especie)
+        [HttpPost]
+        public ActionResult Delete(Especie especie)
         {
             var p = new EspecieApiProcess();
             

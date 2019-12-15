@@ -12,18 +12,19 @@ using System.Web.Http;
 
 namespace Safari.Services.Http
 {
-    [RoutePrefix("api/Especie")]
-    public class EspecieServiceHttp : ApiController
+
+    [RoutePrefix("api/Sala")]
+    public class SalaServiceHttp : ApiController
     {
         [HttpPost]
         [Route("Agregar")]
-        public EspecieResponse Agregar(EspecieRequest request)
+        public SalaResponse Agregar(SalaRequest request)
         {
             try
             {
-                var response = new EspecieResponse();
-                var bc = new EspecieComponent();
-                response.Result = bc.Add(request.Especie);
+                var response = new SalaResponse();
+                var bc = new SalaComponent();
+                response.Result = bc.Add(request.Sala);
                 return response;
             }
             catch (Exception ex)
@@ -39,12 +40,12 @@ namespace Safari.Services.Http
 
         [HttpGet]
         [Route("ListarTodos")]
-        public ListarTodosEspecieResponse ListarTodos()
+        public ListarTodosSalaResponse ListarTodos()
         {
             try
             {
-                var response = new ListarTodosEspecieResponse();
-                var bc = new EspecieComponent();
+                var response = new ListarTodosSalaResponse();
+                var bc = new SalaComponent();
                 response.Result = bc.ToList();
                 return response;
             }
@@ -52,7 +53,7 @@ namespace Safari.Services.Http
             {
                 var httpError = new HttpResponseMessage()
                 {
-                    StatusCode = (HttpStatusCode)422, 
+                    StatusCode = (HttpStatusCode)422,
                     ReasonPhrase = ex.Message
                 };
                 throw new HttpResponseException(httpError);
@@ -62,12 +63,12 @@ namespace Safari.Services.Http
 
         [HttpGet]
         [Route("LeerPorId")]
-        public EspecieResponse LeerPorId(int id)
+        public SalaResponse LeerPorId(int id)
         {
             try
             {
-                var response = new EspecieResponse();
-                var bc = new EspecieComponent();
+                var response = new SalaResponse();
+                var bc = new SalaComponent();
                 response.Result = bc.Find(id);
                 return response;
             }
@@ -85,12 +86,12 @@ namespace Safari.Services.Http
 
         [HttpPost]
         [Route("Actualizar")]
-        public void Actualizar(EspecieRequest request)
+        public void Actualizar(SalaRequest request)
         {
             try
             {
-                var bc = new EspecieComponent();
-                bc.Edit(request.Especie);
+                var bc = new SalaComponent();
+                bc.Edit(request.Sala);
             }
             catch (Exception ex)
             {
@@ -106,13 +107,13 @@ namespace Safari.Services.Http
 
         [HttpPost]
         [Route("Eliminar")]
-        public void Eliminar(EspecieRequest request)
+        public void Eliminar(SalaRequest request)
         {
             try
             {
-                var bc = new EspecieComponent();
-                //var especie = bc.Find(id);
-                bc.Remove(request.Especie);
+                var bc = new SalaComponent();
+                //var sala = bc.Find(id);
+                bc.Remove(request.Sala);
             }
             catch (Exception ex)
             {

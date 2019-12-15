@@ -78,8 +78,25 @@ namespace Safari.UI.Process
             }
         }
 
+        //public void Delete(int id)
+        //{
+        //    try
+        //    {
+        //        var parameters = new Dictionary<string, object>
+        //        {
+        //            { "id", id }
+        //        };
+        //        var r = HttpPost<EspecieResponse, int>("api/Especie/Eliminar", id, MediaType.Json);
+        //        return;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new ApplicationException(ex.Message);
+        //    }
+        //}
 
-       
+
+
 
         public Especie ReadBy(int id)
         {

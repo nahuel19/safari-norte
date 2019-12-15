@@ -25,7 +25,7 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
 
             foreach(var c in citas)
             {
-                
+                var paciente = new PacienteProcess().Find(c.PacienteId);
                 events.Add(new CitaViewModel()
                 {
                     id = c.Id,

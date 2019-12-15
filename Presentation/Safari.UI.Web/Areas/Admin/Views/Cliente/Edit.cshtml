@@ -2,11 +2,16 @@
 
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Funcy.cshtml";
 }
 
 @section head {
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 }
+
+
+
+
 
 <h2>Edit</h2>
 
@@ -88,12 +93,16 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/datepicker-esAR.js"></script>
-
-
 }
+
+
+
+
+
+
+
