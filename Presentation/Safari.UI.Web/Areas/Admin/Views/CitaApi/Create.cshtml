@@ -5,6 +5,9 @@
 }
 @section head {
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
 }
 <h2>Create</h2>
 
@@ -20,7 +23,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "datefield form-control" } })
+                @Html.EditorFor(model => model.Fecha,  new { htmlAttributes = new { @class = "form-control", @id= "datetimepicker" } })
                 @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -84,53 +87,53 @@
             @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.CreatedDate, DateTime.Now.ToString(), new { @disabled = "disabled" })*@
-                
-                @Html.TextBox("CreatedDate", DateTime.Now, new { @readonly = "readonly" })
+
+                @Html.TextBox("CreatedDate", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss tt"), new { @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.ChangedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ChangedBy, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ChangedBy, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ChangedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ChangedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ChangedDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeletedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DeletedBy, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DeletedBy, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeletedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DeletedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DeletedDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Deleted, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Deleted)
-                    @Html.ValidationMessageFor(model => model.Deleted, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.ChangedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ChangedBy, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ChangedBy, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ChangedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ChangedDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ChangedDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DeletedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DeletedBy, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DeletedBy, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DeletedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DeletedDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DeletedDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Deleted, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Deleted)
+                        @Html.ValidationMessageFor(model => model.Deleted, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -149,4 +152,28 @@
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script src="~/Scripts/datepicker-esAR.js"></script>
 
+
+    
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.datetimepicker.full.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.datetimepicker.setLocale('es');
+            $('#datetimepicker').datetimepicker({
+                value: '21/12/2019 15:00',
+                step: 30,
+                format: 'Y/m/d H:i',
+                formatTime: 'H:i',
+                formatDate: 'Y/m/d',
+                timepicker: true,
+                datepicker: true,
+                minTime: '9:00',
+                maxTime: '19:00',
+
+
+
+            });
+        });
+    </script>
 }

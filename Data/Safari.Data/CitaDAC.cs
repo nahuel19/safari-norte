@@ -16,7 +16,7 @@ namespace Safari.Data
     {
         public Cita Create(Cita cita)
         {
-            const string SQL_STATEMENT = "INSERT INTO [dbo].[Cita] ([Fecha], [MedicoId], [PacienteId], [SalaId], [TipoServicioId], [Estado], [CreatedBy], [CreatedDate], [ChangedBy], [ChangedDate], [DeletedBy], [DeletedDate], [Deleted]) VALUES (@Fecha, @MedicoId, @PacienteId, @SalaId, @TipoServicioId, @Estado, @CreatedBy, @CreatedDate, @ChangedBy, @ChangedDate, @DeletedBy, @DeletedDate, @Deleted); SELECT SCOPE_IDENTITY();";
+            const string SQL_STATEMENT = "INSERT INTO [dbo].[Cita] ([Fecha], [MedicoId], [PacienteId], [SalaId], [TipoServicioId], [Estado], [CreatedBy], [CreatedDate]) VALUES (@Fecha, @MedicoId, @PacienteId, @SalaId, @TipoServicioId, @Estado, @CreatedBy, @CreatedDate); SELECT SCOPE_IDENTITY();";
 
             try
             {
@@ -33,13 +33,13 @@ namespace Safari.Data
                     db.AddInParameter(cmd, "@CreatedBy", DbType.AnsiString, cita.CreatedBy);
                     db.AddInParameter(cmd, "@CreatedDate", DbType.DateTime, cita.CreatedDate);
 
-                    db.AddInParameter(cmd, "@ChangedBy", DbType.AnsiString, cita.ChangedBy);
-                    db.AddInParameter(cmd, "@ChangedDate", DbType.DateTime, cita.ChangedDate);
+                    //db.AddInParameter(cmd, "@ChangedBy", DbType.AnsiString, cita.ChangedBy);
+                    //db.AddInParameter(cmd, "@ChangedDate", DbType.DateTime, cita.ChangedDate);
 
-                    db.AddInParameter(cmd, "@DeletedBy", DbType.AnsiString, cita.DeletedBy);
-                    db.AddInParameter(cmd, "@DeletedDate", DbType.DateTime, cita.DeletedDate);
+                    //db.AddInParameter(cmd, "@DeletedBy", DbType.AnsiString, cita.DeletedBy);
+                    //db.AddInParameter(cmd, "@DeletedDate", DbType.DateTime, cita.DeletedDate);
 
-                    db.AddInParameter(cmd, "@Deleted", DbType.Boolean, cita.Deleted);
+                    //db.AddInParameter(cmd, "@Deleted", DbType.Boolean, cita.Deleted);
                     cita.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
                 }
             }
@@ -60,6 +60,23 @@ namespace Safari.Data
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
                 db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+                db.ExecuteNonQuery(cmd);
+            }
+        }
+
+        public void DeleteCita (Cita cita)
+        {
+            const string SQL_STATEMENT = "UPDATE Cita SET [DeletedBy]=@DeletedBy, [DeletedDate]=@DeletedDate, [Deleted]=@Deleted  WHERE [Id]= @Id ";
+
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                
+                db.AddInParameter(cmd, "@DeletedBy", DbType.AnsiString, cita.DeletedBy);
+                db.AddInParameter(cmd, "@DeletedDate", DbType.DateTime, cita.DeletedDate);
+                db.AddInParameter(cmd, "@Deleted", DbType.Boolean, cita.Deleted);
+
+                db.AddInParameter(cmd, "@Id", DbType.Int32, cita.Id);
                 db.ExecuteNonQuery(cmd);
             }
         }
@@ -107,7 +124,7 @@ namespace Safari.Data
 
         public void Update(Cita cita)
         {
-            const string SQL_STATEMENT = "UPDATE Cita SET [Fecha]=@Fecha, [MedicoId]=@MedicoId, [PacienteId]=@PacienteId, [SalaId]=@SalaId, [TipoServicioId]=@TipoServicioId, [Estado]=@Estado, [CreatedBy]=@CreatedBy, [CreatedDate]=@CreatedDate, [ChangedBy]=@ChangedBy, [ChangedDate]=@ChangedDate, [DeletedBy]=@DeletedBy, [DeletedDate]=@DeletedDate, [Deleted]=@Deleted  WHERE [Id]= @Id ";
+            const string SQL_STATEMENT = "UPDATE Cita SET [Fecha]=@Fecha, [MedicoId]=@MedicoId, [PacienteId]=@PacienteId, [SalaId]=@SalaId, [TipoServicioId]=@TipoServicioId, [Estado]=@Estado, [ChangedBy]=@ChangedBy, [ChangedDate]=@ChangedDate  WHERE [Id]= @Id ";
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
@@ -119,20 +136,38 @@ namespace Safari.Data
                 db.AddInParameter(cmd, "@TipoServicioId", DbType.Int32, cita.TipoServicioId);
                 db.AddInParameter(cmd, "@Estado", DbType.AnsiString, cita.Estado);
 
-                db.AddInParameter(cmd, "@CreatedBy", DbType.AnsiString, cita.CreatedBy);
-                db.AddInParameter(cmd, "@CreatedDate", DbType.DateTime, cita.CreatedDate);
+                //db.AddInParameter(cmd, "@CreatedBy", DbType.AnsiString, cita.CreatedBy);
+                //db.AddInParameter(cmd, "@CreatedDate", DbType.DateTime, cita.CreatedDate);
 
                 db.AddInParameter(cmd, "@ChangedBy", DbType.AnsiString, cita.ChangedBy);
                 db.AddInParameter(cmd, "@ChangedDate", DbType.DateTime, cita.ChangedDate);
 
-                db.AddInParameter(cmd, "@DeletedBy", DbType.AnsiString, cita.DeletedBy);
-                db.AddInParameter(cmd, "@DeletedDate", DbType.DateTime, cita.DeletedDate);
+                //db.AddInParameter(cmd, "@DeletedBy", DbType.AnsiString, cita.DeletedBy);
+                //db.AddInParameter(cmd, "@DeletedDate", DbType.DateTime, cita.DeletedDate);
 
-                db.AddInParameter(cmd, "@Deleted", DbType.Boolean, cita.Deleted);
+                //db.AddInParameter(cmd, "@Deleted", DbType.Boolean, cita.Deleted);
                 db.AddInParameter(cmd, "@Id", DbType.Int32, cita.Id);
                 db.ExecuteNonQuery(cmd);
             }
         }
+
+
+
+        public void Facturar(Cita cita)
+        {
+            const string SQL_STATEMENT = "UPDATE Cita SET [Estado] = @Estado WHERE [Id]= @Id ";
+
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                
+                db.AddInParameter(cmd, "@Estado", DbType.AnsiString, "Realizado");
+                
+                db.AddInParameter(cmd, "@Id", DbType.Int32, cita.Id);
+                db.ExecuteNonQuery(cmd);
+            }
+        }
+
 
         private Cita LoadCita(IDataReader dr)
         {

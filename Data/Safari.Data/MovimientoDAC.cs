@@ -70,7 +70,7 @@ namespace Safari.Data
 
         public void Update(Movimiento movimiento)
         {
-            const string SQL_STATEMENT = "UPDATE Movimiento SET [Fecha]=@Fecha, [ClienteId]=@ClienteId,[TipoMovimientoId]=@TipoMovimientoId,[Valor]=@Valor, WHERE [Id]= @Id ";
+            const string SQL_STATEMENT = "UPDATE Movimiento SET [Fecha]=@Fecha, [ClienteId]=@ClienteId,[TipoMovimientoId]=@TipoMovimientoId,[Valor]=@Valor WHERE [Id]= @Id ";
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))

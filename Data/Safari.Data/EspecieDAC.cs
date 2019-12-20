@@ -17,7 +17,7 @@ namespace Safari.Data
     {
         public Especie Create(Especie especie)
         {
-            const string SQL_STATEMENT = "INSERT INTO Especie([Nombre]) VALUES(@Nombre); SELECT SCOPE_IDENTITY();";
+            const string SQL_STATEMENT = "INSERT INTO Especie ([Nombre]) VALUES(@Nombre); SELECT SCOPE_IDENTITY();";
 
             try
             {

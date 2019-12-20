@@ -1,0 +1,168 @@
+﻿@*@model IEnumerable<Safari.Entities.Cita>*@
+
+
+@model PagedList.IPagedList<Safari.Entities.Cita>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+@{
+    /**/
+
+
+
+    ViewBag.Title = "Cita";
+}
+
+
+<h2>Cita</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create", "", new { @class = "btn btn-primary @*btn-sm*@" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Fecha
+        </th>
+        <th>
+            Medico
+        </th>
+        <th>
+            Paciente
+        </th>
+        <th>
+            Sala
+        </th>
+        <th>
+            TipoServicio
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            CreatedBy
+        </th>
+        <th>
+            CreatedDate
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.ChangedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChangedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeletedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeletedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deleted)
+            </th>
+            <th></th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medico.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paciente.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sala.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoServicio.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.ChangedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChangedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeletedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeletedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deleted)
+                </td>*@
+            <td>
+                @*@Html.ActionLink("Ver", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" })
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })*@
+
+                <a class="btn btn-info btn-xs" id="iframe-ver" href="@Url.Action("Details","Cita", new { id = item.Id })">Ver</a>
+                <a class="btn btn-warning btn-xs" id="iframe-editar" href="@Url.Action("Edit","Cita", new { id = item.Id })">Editar</a>
+                <a class="btn btn-danger btn-xs" id="iframe-eliminar" href="@Url.Action("Delete","Cita", new { id = item.Id })">Eliminar</a>
+                <a class="btn btn-success btn-xs" href="@Url.Action("Facturar","CitaApi", new { id = item.Id })">Facturar</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="~/Scripts/fancybox.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#iframe-ver").fancybox({
+                type: 'iframe',
+                afterClose: function () { window.location.reload(); },
+            });
+        });
+
+        $(document).ready(function () {
+            $("#iframe-editar").fancybox({
+                type: 'iframe',
+                afterClose: function () { window.location.reload(); },
+            });
+        });
+
+        $(document).ready(function () {
+            $("#iframe-eliminar").fancybox({
+                type: 'iframe',
+                afterClose: function () { window.location.reload(); },
+            });
+        });
+
+    </script>
+
+
+}
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+

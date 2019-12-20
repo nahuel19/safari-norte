@@ -25,33 +25,20 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
 
             foreach(var c in citas)
             {
-                var paciente = new PacienteProcess().Find(c.PacienteId);
+                var paciente = new PacienteApiProcess().ReadBy(c.PacienteId);
+                var cliente = new ClienteApiProcess().ReadBy(paciente.ClienteId);
+                
                 events.Add(new CitaViewModel()
                 {
                     id = c.Id,
-                    title = "Pacient." + c.PacienteId.ToString(),
-                    start = c.Fecha.AddHours(-6).AddDays(1).ToString("yyyy-MM-dd hh:mm "),
-                    end = c.Fecha.AddHours(-6).AddMinutes(30).ToString("yyyy-MM-dd hh:mm"),
+                    title = cliente.Apellido.ToString(),
+                    start = c.Fecha.AddDays(1).AddHours(-5).ToString("yyyy-MM-dd hh:mm "),
+                    //end = c.Fecha.AddHours(-5).AddMinutes(30).ToString("yyyy-MM-dd hh:mm"),
                     allDay = false
+
+                    
                 });
             }
-
-
-            //for (var i = 1; i <= 5; i++)
-            //{
-            //    events.Add(new CitaViewModel()
-            //    {
-            //        id = i,
-            //        title = "Event " + i,
-            //        start = start.ToString(),
-            //        end = end.ToString(),
-            //        allDay = false
-            //    });
-
-            //    start = start.AddDays(7);
-            //    end = end.AddDays(7);
-            //}
-
 
             return Json(events.ToArray(), JsonRequestBehavior.AllowGet);
         }

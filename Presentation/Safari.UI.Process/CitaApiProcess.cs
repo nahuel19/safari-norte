@@ -61,6 +61,20 @@ namespace Safari.UI.Process
             }
         }
 
+        public void Facturar(Cita cita, int val)
+        {
+            try
+            {
+                var request = new CitaRequest() { Cita = cita };
+                HttpPost<CitaResponse, CitaRequest>("api/Cita/Actualizar", request, MediaType.Json, val);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.Message);
+            }
+        }
+
 
         public void Delete(Cita cita)
         {

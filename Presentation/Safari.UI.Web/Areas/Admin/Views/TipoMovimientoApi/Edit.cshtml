@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Funcy.cshtml";
 }
 
 <h2>Edit</h2>
@@ -41,9 +42,7 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

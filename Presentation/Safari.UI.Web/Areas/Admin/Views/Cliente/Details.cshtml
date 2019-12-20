@@ -72,6 +72,17 @@
                 @Html.DisplayFor(model => model.Domicilio)
             </dd>
 
+            <dt>
+            Mascotas
+        </dt>
+
+        @foreach (var item in Model.Pacientes)
+        {
+            <dd>
+                @Html.DisplayFor(model => item.Nombre)
+            </dd>
+        }
+
         </dl>
     </div>
     <p>

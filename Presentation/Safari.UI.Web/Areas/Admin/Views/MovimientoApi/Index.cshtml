@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Safari.Entities.Movimiento>
+
+@{
+                /**/
+
+                ViewBag.Title = "Index";
+                Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create", "", new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClienteId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoMovimientoId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Fecha)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ClienteId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TipoMovimientoId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Valor)
+    </td>
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+
+        <a class="btn btn-info btn-xs" id="iframe-ver" href="@Url.Action("Details","MovimientoApi", new { id = item.Id })">Ver</a>
+        <a class="btn btn-warning btn-xs" id="iframe-editar" href="@Url.Action("Edit","MovimientoApi", new { id = item.Id })">Editar</a>
+        <a class="btn btn-danger btn-xs" id="iframe-eliminar" href="@Url.Action("Delete","MovimientoApi", new { id = item.Id })">Eliminar</a>
+    </td>
+</tr>
+}
+
+</table>
+
+
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="~/Scripts/fancybox.js"></script>
+    <script>
+
+        $(document).ready(function () {
+        $("#iframe-ver").fancybox({
+            type: 'iframe',
+            afterClose: function () { window.location.reload(); },
+        });
+        });
+
+        $(document).ready(function () {
+            $("#iframe-editar").fancybox({
+                type: 'iframe',
+                afterClose: function () { window.location.reload(); },
+            });
+        });
+
+        $(document).ready(function () {
+            $("#iframe-eliminar").fancybox({
+                type: 'iframe',
+                afterClose: function () { window.location.reload(); },
+            });
+        });
+
+    </script>
+
+
+}
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+

@@ -66,7 +66,7 @@ namespace Safari.Entities
 
         [DataMember]
         [DisplayName("ChangedDate")]
-        public DateTime ChangedDate { get; set; }
+        public DateTime? ChangedDate { get; set; }
 
         [DataMember]
         [DisplayName("DeletedBy")]
@@ -74,7 +74,7 @@ namespace Safari.Entities
 
         [DataMember]
         [DisplayName("DeletedDate")]
-        public DateTime DeletedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
 
         [DataMember]
         [DisplayName("Deleted")]

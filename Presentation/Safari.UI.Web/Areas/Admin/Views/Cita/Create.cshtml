@@ -1,0 +1,179 @@
+﻿@model Safari.Entities.Cita
+
+@{
+    ViewBag.Title = "Create";
+}
+@section head {
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+}
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Cita</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control", @id = "datetimepicker" } })
+                @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MedicoId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MedicoId, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.DropDownList("MedicoId", ViewData["Medicos"] as SelectList)*@
+                @Html.ValidationMessageFor(model => model.MedicoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PacienteId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PacienteId, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.DropDownList("PacienteId", ViewData["Pacientes"] as SelectList)*@
+                @Html.ValidationMessageFor(model => model.PacienteId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SalaId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SalaId, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.DropDownList("SalaId", ViewData["Salas"] as SelectList)*@
+                @Html.ValidationMessageFor(model => model.SalaId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoServicioId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TipoServicioId, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.DropDownList("TipoServicioId", ViewData["TS"] as SelectList)*@
+                @Html.ValidationMessageFor(model => model.TipoServicioId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control" } })
+
+                @*@Html.DropDownList("Estado", ViewData["ListaEstados"] as SelectList)*@
+                @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.CreatedBy, User.Identity.Name, new { @disabled = "disabled" } )*@
+                @Html.TextBox("CreatedBy", User.Identity.Name, new { @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.CreatedDate, DateTime.Now.ToString(), new { @disabled = "disabled" })*@
+
+                @Html.TextBox("CreatedDate", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss tt"), new { @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.ChangedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ChangedBy, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ChangedBy, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ChangedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ChangedDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ChangedDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DeletedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DeletedBy, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DeletedBy, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DeletedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DeletedDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DeletedDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Deleted, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Deleted)
+                        @Html.ValidationMessageFor(model => model.Deleted, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/datepicker-esAR.js"></script>
+
+
+
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.datetimepicker.full.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.datetimepicker.setLocale('es');
+            $('#datetimepicker').datetimepicker({
+                value: '21/12/2019 15:00',
+                step: 30,
+                format: 'Y/m/d H:i',
+                formatTime: 'H:i',
+                formatDate: 'Y/m/d',
+                timepicker: true,
+                datepicker: true,
+                minTime: '9:00',
+                maxTime: '19:00',
+
+
+
+            });
+        });
+    </script>
+}

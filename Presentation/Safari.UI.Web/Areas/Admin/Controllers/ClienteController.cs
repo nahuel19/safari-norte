@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace Safari.UI.Web.Areas.Admin.Controllers
 {
@@ -37,9 +38,50 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
 
 
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.ToList());
+            var p = new ClienteApiProcess();
+            var lista = p.ToList();
+
+            ViewBag.CurrentSort = sortOrder;
+
+            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var cliente = from s in lista select s;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                cliente = cliente.Where(s => s.Apellido.Contains(searchString));
+            }
+
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    cliente = cliente.OrderByDescending(s => s.Apellido);
+                    break;
+                default:
+                    cliente = cliente.OrderBy(s => s.Apellido);
+                    break;
+            }
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(cliente.ToPagedList(pageNumber, pageSize));
+
+
+            //return View(db.ToList());
         }
 
 
@@ -84,7 +126,6 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
                 }
                 catch (Exception ex)
                 {
-
                     TempData["MessageViewBagName"] = new GenericMessageViewModel
                     {
                         Message = ex.Message,
@@ -187,13 +228,7 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
             
 
             try {
-                //HttpPostedFileBase FileBase = Request.Files[0];
-                //WebImage image = new WebImage(FileBase.InputStream);
-
-                //collection.ImagePet = image.GetBytes();
-
-               
-            
+                           
                 pp.Add(collection);
                 return RedirectToAction("Index");
             }
@@ -205,6 +240,42 @@ namespace Safari.UI.Web.Areas.Admin.Controllers
             }
 
         }
+
+
+
+        public ActionResult CtaCte(int id)
+        {
+            var movimientos = new MovimientoApiProcess().ToList();
+            var movCliente = new List<Movimiento>();
+            double tot = 0 ;
+
+            foreach(var m in movimientos)
+            {
+                if(m.ClienteId == id)
+                {
+                    movCliente.Add(m);
+                    
+                    if(m.TipoMovimientoId == 1)
+                    {
+                        tot += m.Valor;
+                    }
+                    else if(m.TipoMovimientoId ==4)
+                    {
+                        tot += (m.Valor * -1);
+                    }
+                }
+
+            }
+            
+            ViewData["Total"] = tot;
+
+            Cliente cliente = db.Find(id);
+            ViewData["Nombre"] = cliente.Nombre + " " + cliente.Apellido;
+
+
+            return View(movCliente);
+        }
+
 
     }
 }

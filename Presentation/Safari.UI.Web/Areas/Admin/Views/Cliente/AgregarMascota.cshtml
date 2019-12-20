@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "AgregarMascota";
-    Layout = "~/Areas/Admin/Views/Shared/_Funcy.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 @section head {
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
@@ -68,9 +68,7 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

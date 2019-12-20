@@ -1,7 +1,11 @@
-﻿@model IEnumerable<Safari.Entities.Cliente>
+﻿@*@model IEnumerable<Safari.Entities.Cliente>*@
+
+@model PagedList.IPagedList<Safari.Entities.Cliente>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cliente";
 }
 
 <h2>Clientes</h2>
@@ -9,28 +13,37 @@
 <p>
     @Html.ActionLink("Crear Nuevo", "Create", "", new { @class = "btn btn-primary" })
 </p>
+
+@using (Html.BeginForm("Index", "Cliente", FormMethod.Get))
+{
+    <p>
+        Find: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" new { class="btn btn-primary btn-sm" } />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Apellido)
+            @Html.ActionLink("Apellido", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Telefono)
+            Telefono
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Url)
+            Url
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaNacimiento)
+            Fecha Nacimiento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Domicilio)
+            Domicilio
         </th>
         <th></th>
     </tr>
@@ -61,21 +74,28 @@
             </td>
             <td>
                 @*@Html.ActionLink("Ver", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-xs" })
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" })
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })*@
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" })
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })*@
 
                 <a class="btn btn-info btn-xs" id="iframe-ver" href="@Url.Action("Details","Cliente", new { id = item.Id })">Ver</a>
                 <a class="btn btn-warning btn-xs" id="iframe-editar" href="@Url.Action("Edit","Cliente", new { id = item.Id })">Editar</a>
                 <a class="btn btn-danger btn-xs" id="iframe-eliminar" href="@Url.Action("Delete","Cliente", new { id = item.Id })">Eliminar</a>
 
-                <a id="iframe-addMascota" href="@Url.Action("AgregarMascota","Cliente", new { id = item.Id })">
+                <a  href="@Url.Action("AgregarMascota","Cliente", new { id = item.Id })">
                     <img src="@Url.Content("~/Imagenes/ico1.png")" width="30" />
                 </a>
+
+                <a class="btn btn-success btn-xs" id="iframe-ctacte" href="@Url.Action("CtaCte","Cliente", new { id = item.Id })">Cta.Cte.</a>
             </td>
         </tr>
     }
 
 </table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 
 
 @section Scripts{
@@ -87,10 +107,10 @@
     <script>
 
         $(document).ready(function () {
-        $("#iframe-ver").fancybox({
-            type: 'iframe', 
-            afterClose: function () { window.location.reload(); },
-        }); 
+            $("#iframe-ver").fancybox({
+                type: 'iframe',
+                afterClose: function () { window.location.reload(); },
+            });
         });
 
         $(document).ready(function () {
@@ -114,7 +134,14 @@
             });
         });
 
-       
+        $(document).ready(function () {
+            $("#iframe-ctacte").fancybox({
+                type: 'iframe',
+                afterClose: function () { window.location.reload(); },
+            });
+        });
+
+
     </script>
 
 

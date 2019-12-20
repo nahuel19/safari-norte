@@ -41,6 +41,7 @@ namespace IoC.DependencyResolution {
             For<IService<TipoMovimiento>>().Use<TipoMovimientoService>();
             For<IService<Movimiento>>().Use<MovimientoService>();
             For<IService<Precio>>().Use<PrecioService>();
+            For<IService<Cita>>().Use<CitaService>();
 
 
         }

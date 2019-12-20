@@ -105,6 +105,27 @@ namespace Safari.Services.Http
         }
 
 
+        [HttpPost]
+        [Route("Facturar")]
+        public void Facturar(CitaRequest request, int val)
+        {
+            try
+            {
+                var bc = new CitaComponent();
+                bc.Facturar(request.Cita, val);
+            }
+            catch (Exception ex)
+            {
+                var httpError = new HttpResponseMessage()
+                {
+                    StatusCode = (HttpStatusCode)422,
+                    ReasonPhrase = ex.Message
+                };
+                throw new HttpResponseException(httpError);
+            }
+        }
+
+
         [HttpDelete]
         [Route("Eliminar")]
         public void Eliminar(CitaRequest request)

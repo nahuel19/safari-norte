@@ -32,6 +32,10 @@ namespace Safari.Data
                     db.AddInParameter(cmd, "@Domicilio", DbType.AnsiString, cliente.Domicilio);
                     cliente.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
                 }
+
+                var log = new LoggingService();
+                log.Log("Se creó un nuevo registro en la tabla Cliente a las " + DateTime.Now.ToString());
+
             }
             catch (Exception ex)
             {

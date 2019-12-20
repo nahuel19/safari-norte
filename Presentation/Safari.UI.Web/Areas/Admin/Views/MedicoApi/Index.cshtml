@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Safari.Entities.Medico>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Medico";
 }
 
-<h2>Index</h2>
+<h2>Medico</h2>
 
 <p>
     @Html.ActionLink("Crear Nuevo", "Create", "", new { @class = "btn btn-primary @*btn-sm*@" })
@@ -38,38 +38,85 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoMatricula)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumeroMatricula)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Apellido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Especialidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaNacimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.ActionLink("Ver", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-xs" })
-            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" })
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoMatricula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroMatricula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Especialidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @*@Html.ActionLink("Ver", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" })
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })*@
+
+                <a class="btn btn-info btn-xs" id="iframe-ver" href="@Url.Action("Details","MedicoApi", new { id = item.Id })">Ver</a>
+                <a class="btn btn-warning btn-xs" id="iframe-editar" href="@Url.Action("Edit","MedicoApi", new { id = item.Id })">Editar</a>
+                <a class="btn btn-danger btn-xs" id="iframe-eliminar" href="@Url.Action("Delete","Medico", new { id = item.Id })">Eliminar</a>
+            </td>
+        </tr>
+    }
 
 </table>
+
+
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="~/Scripts/fancybox.js"></script>
+    <script>
+
+        $(document).ready(function () {
+        $("#iframe-ver").fancybox({
+            type: 'iframe',
+            afterClose: function () { window.location.reload(); },
+        });
+        });
+
+        $(document).ready(function () {
+            $("#iframe-editar").fancybox({
+                type: 'iframe',
+                afterClose: function () { window.location.reload(); },
+            });
+        });
+
+        $(document).ready(function () {
+            $("#iframe-eliminar").fancybox({
+                type: 'iframe',
+                afterClose: function () { window.location.reload(); },
+            });
+        });
+
+    </script>
+
+
+}
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+

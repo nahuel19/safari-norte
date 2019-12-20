@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<Safari.Entities.Precio>
 
 @{
-    ViewBag.Title = "Index";
+                /**/
+
+                ViewBag.Title = "Precio";
 }
 
 <h2>Precios</h2>
@@ -26,26 +28,72 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoServicio.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDesde)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaHasta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Valor)
-        </td>
-        <td>
-            @Html.ActionLink("Ver", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-xs" })
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.TipoServicioId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaDesde)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaHasta)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Valor)
+    </td>
+    <td>
+        @*@Html.ActionLink("Ver", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-xs" })
             @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" })
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
-        </td>
-    </tr>
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })*@
+
+        <a class="btn btn-info btn-xs" id="iframe-ver" href="@Url.Action("Details","PrecioApi", new { id = item.Id })">Ver</a>
+        <a class="btn btn-warning btn-xs" id="iframe-editar" href="@Url.Action("Edit","PrecioApi", new { id = item.Id })">Editar</a>
+        <a class="btn btn-danger btn-xs" id="iframe-eliminar" href="@Url.Action("Delete","Precio", new { id = item.Id })">Eliminar</a>
+    </td>
+</tr>
 }
 
 </table>
+
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="~/Scripts/fancybox.js"></script>
+    <script>
+
+        $(document).ready(function () {
+        $("#iframe-ver").fancybox({
+            type: 'iframe',
+            afterClose: function () { window.location.reload(); },
+        });
+        });
+
+        $(document).ready(function () {
+            $("#iframe-editar").fancybox({
+                type: 'iframe',
+                afterClose: function () { window.location.reload(); },
+            });
+        });
+
+        $(document).ready(function () {
+            $("#iframe-eliminar").fancybox({
+                type: 'iframe',
+                afterClose: function () { window.location.reload(); },
+            });
+        });
+
+    </script>
+
+
+}
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
